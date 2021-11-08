@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3018fc3_64b9cb7f",
+        "filename": "src/main.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1019609
+      },
+      "writtenOn": "2021-11-08T13:37:22Z",
+      "side": 1,
+      "message": "wrong spelling!",
+      "range": {
+        "startLine": 7,
+        "startChar": 24,
+        "endLine": 7,
+        "endChar": 29
+      },
+      "revId": "6d9a432d40af69131fe28c1a9a55416db43f08d3",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
