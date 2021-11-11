@@ -1,0 +1,44 @@
+datatypes:
+
+	enum class startButton
+		NotPushed
+		Pushed
+		
+	enum class GearPosition
+		Park
+		Reverse
+		Drive
+		(Neutral?)
+
+	uint8 pedalPosition;
+		
+
+	enum Class DriveMode
+		Normal
+		Sport
+	
+	
+	
+CAN signals:
+	0x001 [0]
+	StartButton uint1
+		0 = notpushed
+		1 = pushed
+	
+	0x001 [1]
+	DriveMode uint1
+		0 = normal
+		1 = sport	
+		
+	0x002 [0]
+	PedalPosition uint8
+	
+	0x003 [0]
+	GearPosition uint2
+		1 = park
+		2 = reverse
+		3 = drive
+		
+
+		
+	
