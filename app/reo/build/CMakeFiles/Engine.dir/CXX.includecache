@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/engine.hpp
+
+/home/okristia/projects/ProjectManhattan/app/reo/include/engine.hpp
+
+/home/okristia/projects/ProjectManhattan/app/reo/main.cpp
+iostream
+-
+../include/engine.hpp
+/home/okristia/projects/ProjectManhattan/app/include/engine.hpp
+
+/home/okristia/projects/ProjectManhattan/app/reo/src/engine.cpp
+../include/engine.hpp
+/home/okristia/projects/ProjectManhattan/app/reo/include/engine.hpp
+
