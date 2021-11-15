@@ -1,3 +1,0 @@
-/home/okristia/projects/ProjectManhattan/app/reo/build/CMakeFiles/rebuild_cache.dir
-/home/okristia/projects/ProjectManhattan/app/reo/build/CMakeFiles/edit_cache.dir
-/home/okristia/projects/ProjectManhattan/app/reo/build/CMakeFiles/Engine.dir
