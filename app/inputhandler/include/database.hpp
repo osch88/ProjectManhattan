@@ -1,30 +1,31 @@
 #ifndef DATABASE
 #define DATABASE
 
-namespace database_type {
+namespace database_type{
 
-    enum Ignition {
+    enum class Ignition {
         kStop = 0,
         kStart
-    }
-    enum Gear {
+    };
+    enum class Gear {
         kPark = 0,
         kNeutral,
         kDrive,
         kReverse
-    }
-    enum DriveMode {
-        kEco = 0;
+    };
+    enum class DriveMode {
+        kEco = 0,
         kSport
-    }
+    };
 
     struct Database {
         Ignition ignition;
         Gear gear;
         DriveMode drivemode;
         unsigned int gas;
-    }
+    };
 }
+
 
 
 #endif
