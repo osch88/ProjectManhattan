@@ -34,7 +34,7 @@ void inputHandler(){
     //noecho()
 
     // Set the terminal to raw mode
-    while(1) {
+    // while(1) {
         inputText();
         system("stty raw");
         input = getchar(); 
@@ -49,6 +49,7 @@ void inputHandler(){
         switch (int_input){
         case 115:
             std::cout << "Start button was pressed" << std::endl;
+            db.start = 0;
             //call function()
             break;
         case 113:
@@ -100,13 +101,5 @@ void inputHandler(){
             std::cout << "Please press a valid button, see manual for input" << std::endl;
             break;
         }
-    }
-}
-
-int main() {
-
-    inputHandler();
-
-    return 0;
-    
+    // }
 }
