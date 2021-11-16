@@ -1,7 +1,8 @@
-#ifndef ENGINE_H
-#define ENGINE_H
+#ifndef ENGINE
+#define ENGINE
 
 #include <iostream>
+#include "./parser.hpp"
 
 const unsigned int MAX = 6000;
 const unsigned int MIN = 800;
@@ -15,13 +16,13 @@ private:
 
 public:
     Engine() = default;
-    void set_EngineStatus(bool _state);
-    void set_inputValues(unsigned int _gas, bool _engineStatus);
+    void set_inpVal(const InputData_t _input);
     unsigned int get_Throttle();
     bool get_EngineStatus();
     unsigned int get_RPM();
     void runEngine();
     void print();
+    void getData();
     ~Engine() = default;
 };
 
