@@ -10,11 +10,13 @@ int main(int argc, char *argv[]){
 
     struct Database db;
 
-    keyboardInput key;
+    keyboardInput key(db);
+    
+
     CANwrite can;
 
     while (true) {
-    /*std::thread t1*/(key.keyReader(db));
+    /*std::thread t1*/key.keyReader(db);
     /*std::thread t2*/(can.sendCAN(db));
     }
     
