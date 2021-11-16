@@ -1,5 +1,5 @@
-#ifdef DATABASE_H
-#define DATABASE_H
+#ifndef DATABASE
+#define DATABASE
 
 namespace database_type {
 
