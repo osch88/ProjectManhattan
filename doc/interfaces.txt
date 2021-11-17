@@ -21,12 +21,12 @@ datatypes:
 	
 CAN signals:
 	0x001 [0]
-	StartButton uint1
+	StartButton uint8
 		0 = notpushed
 		1 = pushed
 	
 	0x001 [1]
-	DriveMode uint1
+	DriveMode uint8
 		0 = normal
 		1 = sport	
 		
@@ -34,7 +34,7 @@ CAN signals:
 	PedalPosition uint8
 	
 	0x003 [0]
-	GearPosition uint2
+	GearPosition uint8
 		1 = park
 		2 = reverse
 		3 = drive
