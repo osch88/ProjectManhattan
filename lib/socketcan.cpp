@@ -71,7 +71,7 @@ SocketCanStatus SocketCan::ReadFromCan(CanFrame & msg){
     struct can_frame frame;
     auto frame_size = sizeof(frame);
     auto number_of_bytes = ::read(m_socket_, &frame, frame_size);
-    //std::cout << "framesize: " << frame_size << " return from readfunc: " << number_of_bytes << std::endl;
+    std::cout << "framesize: " << frame_size << " return from readfunc: " << number_of_bytes << (int)frame.data[0] << std::endl;
 
     if (number_of_bytes != frame_size){
         perror("Can read error or incomplete CAN frame");

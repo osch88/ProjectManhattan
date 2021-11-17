@@ -26,7 +26,7 @@ class SocketCan{
         
     public:
         SocketCan();
-        SocketCan(const SocketCan &) = delete;
+        SocketCan(const SocketCan &);
         SocketCan & operator=(const SocketCan &) = delete;
         SocketCanStatus Open(const std::string & can_interface, int32_t read_timeout_ms = 3);
         SocketCanStatus WriteToCan(const CanFrame & msg);

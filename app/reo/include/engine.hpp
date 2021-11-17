@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "./parser.hpp"
+#include "../../inputhandler/include/database.hpp"
 
 const unsigned int MAX = 6000;
 const unsigned int MIN = 800;
@@ -16,7 +17,7 @@ private:
 
 public:
     Engine() = default;
-    void set_inpVal(const InputData_t _input);
+    void set_inpVal(const database_type::Database &_input);
     unsigned int get_Throttle();
     bool get_EngineStatus();
     unsigned int get_RPM();
