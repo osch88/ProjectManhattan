@@ -113,8 +113,8 @@ void keyboardInput::switchCaseInput(database_type::Database &_db, const int &_in
 void keyboardInput::inputText() {
     std::cout << "Keyboard inputs: " << std::endl;
     std::cout << "\rS: start \n \rQ: stop \n\rP: gear position in park \n\rN: gear position neutral \n"
-        << "\rD: gear position in drive \n\rR: gear position in reverse \n\rUP-arrow: accelerate \n"
-        << "\rDOWN-arrow: decelerate \n\r1: drive mode normal \n\r2: drive mode sport \n\r. : gracefully shutdown" << std::endl;
+        << "\rD: gear position in drive \n\rR: gear position in reverse \n\rL: accelerate \n"
+        << "\rK: decelerate \n\r1: drive mode normal \n\r2: drive mode sport \n\r. : gracefully shutdown" << std::endl;
 }
 void keyboardInput::printState(database_type::Database &_db) {  //  When called, prints state of input
     std::cout << ignitionToString(_db.ignition) << std::endl;
@@ -151,3 +151,5 @@ std::string keyboardInput::driveModeToString(database_type::DriveMode &_e) {
     }
     return res;
 }
+
+keyboardInput::~keyboardInput(){};

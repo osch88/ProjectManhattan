@@ -1,5 +1,6 @@
 #ifndef KEYBOARD_INPUT_HPP_
 #define KEYBOARD_INPUT_HPP_
+#include "../include/database.hpp"
 
 class keyboardInput {
  public:
