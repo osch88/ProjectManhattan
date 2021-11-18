@@ -8,9 +8,15 @@ unsigned int Engine::get_RPM() {
     return RPM;
 }
 
-void Engine::set_inpVal(const InputData_t _input) {
-    throttle = _input.gasPedal;
-    engineStatus = _input.engineOn;
+void Engine::set_inpVal(const database_type::Database &_input) {
+    throttle = _input.gas;
+    if (_input.ignition == database_type::Ignition::kStart){
+        engineStatus == true;
+    }else {
+        engineStatus == false;
+    }
+
+    //engineStatus = _input.engineOn;
     if(engineStatus && RPM == 0) RPM = MIN;
     targetRPM = static_cast<float>( throttle / 100.0f * MAX );
     //TODO: adjust so that minimal gas response does not give a lower RPM than MIN
@@ -22,12 +28,12 @@ unsigned int Engine::get_Throttle() {
 }
 
 void Engine::runEngine() {
-    
-    if( RPM < targetRPM ) {
+    RPM = targetRPM;
+   /* if( RPM = targetRPM ) {
         RPM += 100;
     } else {
         RPM -= 300;
-    }
+    }*/
 }
 
 void Engine::print() {

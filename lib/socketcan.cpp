@@ -71,13 +71,14 @@ SocketCanStatus SocketCan::ReadFromCan(CanFrame & msg){
     struct can_frame frame;
     auto frame_size = sizeof(frame);
     auto number_of_bytes = ::read(m_socket_, &frame, frame_size);
-    //std::cout << "framesize: " << frame_size << " return from readfunc: " << number_of_bytes << std::endl;
+    //std::cout << "framesize: " << frame_size << " return from readfunc: "<<"nr of bytes: " << number_of_bytes <<" Data:  "<< (int)frame.data[0]<< " Frame ID: " << frame.can_id<< std::endl;
 
-    if (number_of_bytes != frame_size){
+    if (number_of_bytes == 0 or number_of_bytes == -1){
+        return kNothingToRead;
+    } else if (number_of_bytes != frame_size){
         perror("Can read error or incomplete CAN frame");
         return kStatusReadError;
     }
-
     msg.id = frame.can_id;
     msg.len = frame.can_dlc;
     memcpy(msg.data, frame.data, frame.can_dlc);

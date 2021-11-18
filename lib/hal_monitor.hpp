@@ -13,7 +13,7 @@ class HalMonitor{
         void UpdateDataForStartButton(const CanFrame &frame);
         void UpdateDataForDriveMode(const CanFrame &frame);
     public:
-        HalMonitor() = default;
+        HalMonitor();
         bool ReadFromCan(SocketCan &socket_can);  //returns true if new frame is read from CAN.
         void GetCanData(database_type::Database &data);
         //void WriteEmulatorDataToCan(const SocketCan &socket_can, const database_type::Database &message) const;

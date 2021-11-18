@@ -16,13 +16,15 @@ namespace can_data_base{
          * 3 = Drive
          * 4 = Neutral
         */
-    }gear;
+    }//gear
+    ;
 
     struct PedalPosition{
         uint32_t frame_id = 2;
         uint8_t length = 1;
         uint8_t position = 0;
-    }pedal;
+    }//pedal
+    ;
 
     struct StartButton{
         uint32_t frame_id = 1;
@@ -32,7 +34,8 @@ namespace can_data_base{
          * 1 = Stop
          * 2 = Start
         */
-    }start_button;
+    }//start_button
+    ;
 
     struct DriveMode{
         uint32_t frame_id = 1;
@@ -42,7 +45,8 @@ namespace can_data_base{
          * 1 = Eco
          * 2 = Sport
         */
-    }drive_mode;
+    }//drive_mode
+    ;
 
     struct Speed{
         uint32_t frame_id = 4;
@@ -51,7 +55,8 @@ namespace can_data_base{
         /* Data interpretation: 
          * 1 : 1 conversion
         */
-    }speed;
+    }//speed
+    ;
 
     struct Rpm{
         uint32_t frame_id = 4;
@@ -60,7 +65,8 @@ namespace can_data_base{
         /* Data interpretation: 
          * 1 : 1 conversion
         */
-    }rpm;
+    }//rpm
+    ;
 }
 
 #endif
