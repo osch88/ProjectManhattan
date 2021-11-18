@@ -23,6 +23,7 @@ struct Database {
     Gear gear;
     DriveMode drivemode;
     unsigned int gas;
+    unsigned int RPM;
 };
 }  //  namespace database_type
 

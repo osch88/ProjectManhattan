@@ -1,46 +1,34 @@
 #include "../include/engine.hpp"
 
-bool Engine::get_EngineStatus() {
-    return engineStatus;
-}
-
-unsigned int Engine::get_RPM() {
-    return RPM;
-}
-
 void Engine::set_inpVal(const database_type::Database &_input) {
     throttle = _input.gas;
     if (_input.ignition == database_type::Ignition::kStart){
-        engineStatus == true;
-    }else {
-        engineStatus == false;
-    }
-
-    //engineStatus = _input.engineOn;
-    if(engineStatus && RPM == 0) RPM = MIN;
-    targetRPM = static_cast<float>( throttle / 100.0f * MAX );
-    //TODO: adjust so that minimal gas response does not give a lower RPM than MIN
+        ignition == true;
+        exit(-1);
+    } 
+    if (_input.ignition == database_type::Ignition::kStop) ignition == false;
+    if (ignition && RPM == 0) RPM = MIN;
+    targetRPM = static_cast<float>(throttle / 100.0f * MAX);
     this->runEngine();
-}
-
-unsigned int Engine::get_Throttle() {
-    return throttle;
 }
 
 void Engine::runEngine() {
     RPM = targetRPM;
-   /* if( RPM = targetRPM ) {
-        RPM += 100;
-    } else {
-        RPM -= 300;
-    }*/
+    // if (RPM = targetRPM) {
+    //     RPM += 100;
+    // } else {
+    //     RPM -= 300;
+    // }
 }
 
+void Engine::getData(database_type::Database &_input) {
+    _input.RPM = RPM;
+}
+
+
 void Engine::print() {
-
-    std::cout << "\033[H\033[2J\033[3J";    // Clear screen
-
-    std::cout   << 
+    std::cout   << "\033[H\033[2J\033[3J";    // Clear screen
+    std::cout   << "\x1B[32m"
     R"(
                      _            
                     (_)           
@@ -51,14 +39,14 @@ void Engine::print() {
                 __/ |             
                |___/               
     )"
+                << "\x1B[0m"
                 << std::endl;
 
-    if(this->get_EngineStatus()) {
-        std::cout << "Engine:\t\ton"    << std::endl;
-    } else {
-        std::cout << "Engine:\t\toff"   << std::endl;
-    }
-
-    std::cout << "Throttle:\t"      << this->get_Throttle() <<  "%"    << std::endl;
-    std::cout << "RPM:\t\t"         << this->get_RPM()      << std::endl;
+    // if (this->ignition) {
+    //     std::cout << "Engine:\t\ton"    << std::endl;
+    // } else {
+    //     std::cout << "Engine:\t\toff"   << std::endl;
+    // }
+    std::cout << "Throttle:\t"      << this->throttle <<  "%"    << std::endl;
+    std::cout << "RPM:\t\t"         << this->RPM      << std::endl;
 }

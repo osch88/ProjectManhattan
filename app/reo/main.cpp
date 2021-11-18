@@ -29,7 +29,7 @@ int main(int argc, char **argv) {
             std::this_thread::sleep_for(std::chrono::microseconds(500));
         }
     } else {
-        printf("Cannot open can socket!");
+        std::cout << ("Cannot open can socket!") << std::endl;
     }
     return 0;
 }
