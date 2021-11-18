@@ -4,6 +4,7 @@ project(reo VERSION "0.1" DESCRIPTION "Engine emulator")
 
 # .hpp files
 include_directories(include)
+include_directories(../../lib)
 
 set(SOURCES main.cpp src/engine.cpp)
 set(CMAKE_CONFIGURATION_TYPES "Debug" CACHE STRING "" FORCE)
