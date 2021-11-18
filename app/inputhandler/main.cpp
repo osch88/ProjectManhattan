@@ -12,6 +12,7 @@ int main(int argc, char *argv[]){
     database_type::Database db;
 
     keyboardInput key(db);
+    const int DELAY = 1;
 
     SocketCan socket_can;
     if (socket_can.Open("vcan0") == kStatusOk){
@@ -21,7 +22,7 @@ int main(int argc, char *argv[]){
         while(run_status){
             //key_status = key.running;
             key.keyReader(db); // borde denna också retunera status? 
-            write_status == WriteCanFrameUserInput(socket_can, db);
+            write_status == WriteCanFrameUserInput(socket_can, db, DELAY);
             
             run_status = key_status && write_status;
             std::this_thread::sleep_for(std::chrono::milliseconds(1));

@@ -24,7 +24,7 @@
     CanFrame ConvertIgnitionToCanFrame(database_type::Database &data_to_write);
     CanFrame ConvertGearToCanFrame(database_type::Database &data_to_write);
     CanFrame ConvertGasToCanFrame(database_type::Database &data_to_write);
-    bool WriteCanFrameUserInput(SocketCan &socket, database_type::Database &db);
+    bool WriteCanFrameUserInput(SocketCan &socket, database_type::Database &db, const int &msdelay);
     bool WriteCanFrameEmulator(SocketCan &socket, database_type::Database &db);
 
 //}
