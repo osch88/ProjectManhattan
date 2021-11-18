@@ -5,29 +5,22 @@
 #include "can_data.hpp"
 #include "../app/inputhandler/include/database.hpp"
 
-/*class CanWriter{
-    private:
-        database_type::Database data_to_write_; // includes the latest data to write to CAN
+template <typename T1, typename T2>
+CanFrame ConvertToCanFrame(T1 &data_to_write, T2 &can_db){
+    CanFrame frame;
+    frame.id = can_db.frame_id;
+    frame.len = can_db.length;
+    int frame_data = static_cast<int>(data_to_write); // convert enum to int
 
-    public:
-        //void GetDataToWrite(database_type::Database &data);
-        //CanFrame ConvertToCanFrame(database_type::Database &data);
-        CanFrame ConvertIgnitionToCanFrame(database_type::Database &data_to_write);
-        CanFrame ConvertGearToCanFrame(database_type::Database &data_to_write);
-        CanFrame ConvertGasToCanFrame(database_type::Database &data_to_write);
-        bool WriteCanFrame(SocketCan &socket, database_type::Database &db);
-        CanWriter();
+    for (int i = 0; i < frame.len; ++i){
+        frame.data[i] = frame_data;
+    }
+    return frame;
+}
 
-};*/
+bool WriteUserInputToCan(SocketCan &socket, database_type::Database &db, const int &msdelay);
+bool WriteCanFrameEmulator(SocketCan &socket, database_type::Database &db, const int &msdelay);
 
-//namespace can_writer {
-    CanFrame ConvertIgnitionToCanFrame(database_type::Database &data_to_write);
-    CanFrame ConvertGearToCanFrame(database_type::Database &data_to_write);
-    CanFrame ConvertGasToCanFrame(database_type::Database &data_to_write);
-    bool WriteCanFrameUserInput(SocketCan &socket, database_type::Database &db, const int &msdelay);
-    bool WriteCanFrameEmulator(SocketCan &socket, database_type::Database &db);
-
-//}
 
 #endif
 
