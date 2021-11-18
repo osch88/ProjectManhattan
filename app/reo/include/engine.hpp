@@ -1,30 +1,26 @@
-#ifndef ENGINE
-#define ENGINE
+#ifndef APP_REO_INCLUDE_ENGINE_HPP_
+#define APP_REO_INCLUDE_ENGINE_HPP_
 
 #include <iostream>
-#include "./parser.hpp"
 #include "../../inputhandler/include/database.hpp"
 
 const unsigned int MAX = 6000;
 const unsigned int MIN = 800;
 
 class Engine {
-private:
-    bool engineStatus = false;
+ private:
+    bool ignition = false;
     unsigned int RPM;
     unsigned int throttle;
     unsigned int targetRPM;
 
-public:
+ public:
     Engine() = default;
     void set_inpVal(const database_type::Database &_input);
-    unsigned int get_Throttle();
-    bool get_EngineStatus();
-    unsigned int get_RPM();
     void runEngine();
     void print();
-    void getData();
+    void getData(database_type::Database &_input);
     ~Engine() = default;
 };
 
-#endif
+#endif  // APP_REO_INCLUDE_ENGINE_HPP_
