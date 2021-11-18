@@ -5,17 +5,16 @@
 #include "./include/keyboard_input.hpp"
 #include "./include/CANwrite.hpp"
 
+int main(int argc, char *argv[]) {
 
-int main(int argc, char *argv[]){
-
-    struct Database db;
-
+    struct database_type::Database db;
+    
     keyboardInput key(db);
     
 
     CANwrite can;
 
-    while (true) {
+    while (key.running) {
     /*std::thread t1*/key.keyReader(db);
     /*std::thread t2*/(can.sendCAN(db));
     }
