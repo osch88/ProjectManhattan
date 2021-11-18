@@ -55,7 +55,8 @@ CanFrame ConvertGasToCanFrame(database_type::Database &data_to_write){
     return gas;
 }
 
-CanFrame ConvertToCanFrame(database_type::Database &data_to_write, can_data_base::CanData &can_db){
+
+/*CanFrame ConvertToCanFrame(database_type::Database &data_to_write, can_data_base::CanData &can_db){
     CanFrame frame;
     //can_data_base::PedalPosition pedal_position;
     frame.id = can_db.frame_id;
@@ -66,7 +67,7 @@ CanFrame ConvertToCanFrame(database_type::Database &data_to_write, can_data_base
         gas.data[i] = gas_data;
     }
     return gas;
-}
+}*/
 
 bool WriteCanFrameUserInput(SocketCan &socket, database_type::Database &db, const int &msdelay){
     //SocketCan socket_can;
