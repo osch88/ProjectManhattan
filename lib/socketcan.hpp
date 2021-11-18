@@ -18,6 +18,7 @@ enum SocketCanStatus{
     kStatusWriteError,
     kStatusReadError,
     kStatusBindError,
+    kNothingToRead
 };
 
 class SocketCan{

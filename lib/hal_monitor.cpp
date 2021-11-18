@@ -12,13 +12,13 @@ bool HalMonitor::ReadFromCan(SocketCan &socket_can) {
     bool return_value = true;
     CanFrame frame;
     if (socket_can.ReadFromCan(frame) == SocketCanStatus::kStatusOk) {
-        if (frame.id == 1 /*can_data_base::start_button.frame_id*/ or 1/*can_data_base::drive_mode.frame_id*/) {
+        std::cout<< "frameid:" << frame.id << std::endl;
+        if (frame.id == 1 ) {
             UpdateDataForStartButton(frame);
             UpdateDataForDriveMode(frame);
-        } else if (frame.id == 2/*can_data_base::pedal.frame_id*/) {
-            //latest_received_data_.gas =60;
+        } else if (frame.id == 2) {
             UpdateDataForPedalPosition(frame);
-        } else if (frame.id == 3/*can_data_base::gear.frame_id*/) {
+        } else if (frame.id == 3) {
             UpdateDataForGearPosition(frame);
         }
     } else {
