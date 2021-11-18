@@ -1,6 +1,8 @@
 #include "socketcan.hpp"
 #include "writecan.hpp"
 #include <iostream>
+#include <thread>
+#include <chrono>
 
 /*CanWriter::CanWriter(){
     data_to_write_.ignition = database_type::Ignition::kStop;
@@ -53,7 +55,20 @@ CanFrame ConvertGasToCanFrame(database_type::Database &data_to_write){
     return gas;
 }
 
-bool WriteCanFrameUserInput(SocketCan &socket, database_type::Database &db){
+CanFrame ConvertToCanFrame(database_type::Database &data_to_write, can_data_base::CanData &can_db){
+    CanFrame frame;
+    //can_data_base::PedalPosition pedal_position;
+    frame.id = can_db.frame_id;
+    gas.len = pedal_position.length;
+    int gas_data = static_cast<int>(data_to_write.gas); // convert enum to int
+
+    for (int i = 0; i < gas.len; ++i){
+        gas.data[i] = gas_data;
+    }
+    return gas;
+}
+
+bool WriteCanFrameUserInput(SocketCan &socket, database_type::Database &db, const int &msdelay){
     //SocketCan socket_can;
     //if (socket == kStatusOk) Vart ska vi kolla att socket var ok? i main? om inte går vi inte vidare?
 
@@ -62,7 +77,9 @@ bool WriteCanFrameUserInput(SocketCan &socket, database_type::Database &db){
     const CanFrame gear = ConvertGearToCanFrame(db);
     const CanFrame gas = ConvertGasToCanFrame(db);
     auto write_ignition_status = socket.WriteToCan(ignition);
+    std::this_thread::sleep_for(std::chrono::milliseconds(msdelay)); //delay for frame
     auto write_gear_status = socket.WriteToCan(gear);
+    std::this_thread::sleep_for(std::chrono::milliseconds(msdelay)); //delay for frame
     auto write_gas_status = socket.WriteToCan(gas);
     if (write_ignition_status != kStatusOk){ //kolla alla samtidigt och return false om någon misslyckas?
         printf("something went wrong on socket write for ignition, error code : %d \n", int32_t(write_ignition_status));
