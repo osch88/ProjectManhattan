@@ -19,11 +19,6 @@ void Engine::set_inpVal(const database_type::Database &_input) {
 
 void Engine::runEngine() {
     RPM = targetRPM;
-    // if (RPM = targetRPM) {
-    //     RPM += 100;
-    // } else {
-    //     RPM -= 300;
-    // }
 }
 
 void Engine::getData(database_type::Database &_input) {
