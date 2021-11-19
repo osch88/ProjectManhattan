@@ -3,10 +3,15 @@
 void Engine::set_inpVal(const database_type::Database &_input) {
     throttle = _input.gas;
     if (_input.ignition == database_type::Ignition::kStart){
-        ignition == true;
-        exit(-1);
-    } 
-    if (_input.ignition == database_type::Ignition::kStop) ignition == false;
+        ignition = true;
+        //exit(-1);
+    } else if (_input.ignition == database_type::Ignition::kStop) {
+         ignition = false;
+         targetRPM = 0;
+         runEngine();
+         return;
+    }
+    
     if (ignition && RPM == 0) RPM = MIN;
     targetRPM = static_cast<float>(throttle / 100.0f * MAX);
     this->runEngine();
@@ -42,11 +47,11 @@ void Engine::print() {
                 << "\x1B[0m"
                 << std::endl;
 
-    // if (this->ignition) {
-    //     std::cout << "Engine:\t\ton"    << std::endl;
-    // } else {
-    //     std::cout << "Engine:\t\toff"   << std::endl;
-    // }
+     if (this->ignition) {
+         std::cout << "Engine:\t\ton"    << std::endl;
+     } else {
+         std::cout << "Engine:\t\toff"   << std::endl;
+     }
     std::cout << "Throttle:\t"      << this->throttle <<  "%"    << std::endl;
     std::cout << "RPM:\t\t"         << this->RPM      << std::endl;
 }

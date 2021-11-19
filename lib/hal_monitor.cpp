@@ -12,7 +12,6 @@ bool HalMonitor::ReadFromCan(SocketCan &socket_can) {
     bool return_value = true;
     CanFrame frame;
     if (socket_can.ReadFromCan(frame) == SocketCanStatus::kStatusOk) {
-        std::cout<< "frameid:" << frame.id << std::endl;
         if (frame.id == 1 ) {
             UpdateDataForStartButton(frame);
             UpdateDataForDriveMode(frame);
@@ -28,13 +27,13 @@ bool HalMonitor::ReadFromCan(SocketCan &socket_can) {
 }
 
 void HalMonitor::UpdateDataForGearPosition(const CanFrame &frame) {
-    if (frame.data[0] == 1){
+    if (frame.data[0] == 0){
         latest_received_data_.gear = database_type::Gear::kPark;
-    } else if (frame.data[0] == 2){
+    } else if (frame.data[0] == 1){
         latest_received_data_.gear = database_type::Gear::kReverse;
-    } else if (frame.data[0] == 3){
+    } else if (frame.data[0] == 2){
         latest_received_data_.gear = database_type::Gear::kDrive;
-    } else if (frame.data[0] == 4){
+    } else if (frame.data[0] == 3){
         latest_received_data_.gear = database_type::Gear::kNeutral;
     } else {
         std::cout << "invalid data in Gear position can data, not within valid range. " << std::endl;
@@ -50,9 +49,9 @@ void HalMonitor::UpdateDataForPedalPosition(const CanFrame &frame) {
 }
 
 void HalMonitor::UpdateDataForStartButton(const CanFrame &frame){
-    if (frame.data[0] == 1){
+    if (frame.data[0] == 0){
         latest_received_data_.ignition = database_type::Ignition::kStop;
-    } else if (frame.data[0] == 2){
+    } else if (frame.data[0] == 1){
         latest_received_data_.ignition = database_type::Ignition::kStart;
     } else {
         std::cout << "invalid data in start button can data, not within valid range. " << std::endl;
@@ -60,9 +59,9 @@ void HalMonitor::UpdateDataForStartButton(const CanFrame &frame){
 }
 
 void HalMonitor::UpdateDataForDriveMode(const CanFrame &frame){
-    if (frame.data[1] == 1){
+    if (frame.data[1] == 0){
         latest_received_data_.drivemode = database_type::DriveMode::kEco;
-    } else if (frame.data[1] == 2){
+    } else if (frame.data[1] == 0){
         latest_received_data_.drivemode = database_type::DriveMode::kSport;
     } else {
         std::cout << "invalid data in Drive Mode can data, not within valid range. " << std::endl;
