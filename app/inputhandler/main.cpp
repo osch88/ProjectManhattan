@@ -4,7 +4,7 @@
 
 #include "./include/database.hpp"
 #include "./include/keyboard_input.hpp"
-#include "../../lib/writecan.hpp"
+#include "../../lib/include/writecan.hpp"
 
 
 int main(int argc, char *argv[]){

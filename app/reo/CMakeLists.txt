@@ -1,12 +1,20 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required (VERSION 3.5.1)
 
-project(reo VERSION "0.1" DESCRIPTION "Engine emulator")
+project(reo LANGUAGES CXX)
 
-# .hpp files
-include_directories(include)
-include_directories(../../lib)
+#set(BUILD_DIR_NAME "${CMAKE_SOURCE_DIR}/build")
 
-set(SOURCES main.cpp src/engine.cpp)
-set(CMAKE_CONFIGURATION_TYPES "Debug" CACHE STRING "" FORCE)
+include_directories(include ../../lib)
 
-add_executable(reo ${SOURCES})
+set(EXECUTABLE_OUTPUT_PATH "../../../")
+add_executable(reo
+    main.cpp
+    src/engine.cpp)
+set_target_properties(
+    reo 
+    PROPERTIES 
+            #OUTPUT_NAME "myname"
+            SUFFIX ".out"
+        )
+
+target_link_libraries(${PROJECT_NAME} PUBLIC socketcan hal)

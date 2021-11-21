@@ -1,4 +1,4 @@
-#include "hal_monitor.hpp"
+#include "../include/hal_monitor.hpp"
 #include <iostream>
 
 HalMonitor::HalMonitor() {
@@ -12,7 +12,7 @@ bool HalMonitor::ReadFromCan(SocketCan &socket_can) {
     bool return_value = true;
     CanFrame frame;
     if (socket_can.ReadFromCan(frame) == SocketCanStatus::kStatusOk) {
-        if (frame.id == 1 ) {
+        if (frame.id == 1 ) { //TODO: use can database to get the corresponding can ids.
             UpdateDataForStartButton(frame);
             UpdateDataForDriveMode(frame);
         } else if (frame.id == 2) {
@@ -42,7 +42,7 @@ void HalMonitor::UpdateDataForGearPosition(const CanFrame &frame) {
 
 void HalMonitor::UpdateDataForPedalPosition(const CanFrame &frame) {
     if (frame.data[0] >= 0 and frame.data[0] <= 100){
-        latest_received_data_.gas = frame.data[0]; //TODO: proper cast
+        latest_received_data_.gas = frame.data[0];
     } else {
         std::cout << "invalid data in Pedal Position can data, not within valid range. " << std::endl;
     }

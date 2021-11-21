@@ -1,8 +1,8 @@
 #include <iostream>
 #include <chrono>
 #include <thread>
-#include "../../lib/socketcan.hpp"
-#include "../../lib/hal_monitor.hpp"
+#include "../../lib/include/socketcan.hpp"
+#include "../../lib/include/hal_monitor.hpp"
 #include "./include/engine.hpp"
 
 bool Run(SocketCan &socket_can, Engine &engine, HalMonitor &hal_monitor){
