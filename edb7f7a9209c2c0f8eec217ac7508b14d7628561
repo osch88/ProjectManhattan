@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1b01d45_138b2e0b",
+        "filename": "app/reo/include/mainloop.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1019609
+      },
+      "writtenOn": "2021-11-21T20:40:39Z",
+      "side": 1,
+      "message": "should not be a class, instead use an .h file with functions.",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 2
+      },
+      "revId": "edb7f7a9209c2c0f8eec217ac7508b14d7628561",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cdc0beb_8e8bc065",
+        "filename": "app/reo/main.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1019609
+      },
+      "writtenOn": "2021-11-21T20:40:39Z",
+      "side": 1,
+      "message": "mainloop is maybe a less good name.. instead use e.g. server? or something else that is nice.. :)",
+      "revId": "edb7f7a9209c2c0f8eec217ac7508b14d7628561",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad764b1b_d765758f",
+        "filename": "app/reo/main.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1019609
+      },
+      "writtenOn": "2021-11-21T20:40:39Z",
+      "side": 1,
+      "message": "create an object of the class from which you call the function. Class functions should not be defined in main.",
+      "range": {
+        "startLine": 4,
+        "startChar": 4,
+        "endLine": 4,
+        "endChar": 20
+      },
+      "revId": "edb7f7a9209c2c0f8eec217ac7508b14d7628561",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
