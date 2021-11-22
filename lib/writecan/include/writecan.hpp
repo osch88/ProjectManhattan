@@ -3,7 +3,7 @@
 
 #include "socketcan.hpp"
 #include "can_data.hpp"
-#include "../../app/inputhandler/include/database.hpp"
+#include "database.hpp"
 
 template <typename T1, typename T2>
 CanFrame ConvertToCanFrame(T1 &data_to_write, T2 &can_db){

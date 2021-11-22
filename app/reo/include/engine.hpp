@@ -2,7 +2,7 @@
 #define APP_REO_INCLUDE_ENGINE_HPP_
 
 #include <iostream>
-#include "../../inputhandler/include/database.hpp"
+#include "database.hpp"
 
 const unsigned int MAX = 6000;
 const unsigned int MIN = 800;

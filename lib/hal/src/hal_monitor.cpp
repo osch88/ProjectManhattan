@@ -1,4 +1,4 @@
-#include "../include/hal_monitor.hpp"
+#include "hal_monitor.hpp"
 #include <iostream>
 
 HalMonitor::HalMonitor() {

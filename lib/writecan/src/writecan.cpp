@@ -1,5 +1,5 @@
-#include "../include/socketcan.hpp"
-#include "../include/writecan.hpp"
+#include "socketcan.hpp"
+#include "writecan.hpp"
 #include <iostream>
 #include <thread>
 #include <chrono>
