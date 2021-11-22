@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbee962c_5793528d",
+        "filename": "lib/include/writecan.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1019609
+      },
+      "writtenOn": "2021-11-22T14:37:37Z",
+      "side": 1,
+      "message": "can be const?",
+      "range": {
+        "startLine": 9,
+        "startChar": 27,
+        "endLine": 9,
+        "endChar": 44
+      },
+      "revId": "569cb42a52285a3288a5db05180d2ca40a3bd9ff",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2f9ca9a_1e9a4b4a",
+        "filename": "lib/include/writecan.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1019609
+      },
+      "writtenOn": "2021-11-22T14:37:37Z",
+      "side": 1,
+      "message": "can be const?",
+      "range": {
+        "startLine": 9,
+        "startChar": 46,
+        "endLine": 9,
+        "endChar": 56
+      },
+      "revId": "569cb42a52285a3288a5db05180d2ca40a3bd9ff",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a8e2d7a_5acd46fc",
+        "filename": "lib/src/writecan.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1019609
+      },
+      "writtenOn": "2021-11-22T14:37:37Z",
+      "side": 1,
+      "message": "not needed?",
+      "range": {
+        "startLine": 53,
+        "startChar": 42,
+        "endLine": 53,
+        "endChar": 44
+      },
+      "revId": "569cb42a52285a3288a5db05180d2ca40a3bd9ff",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8d33fda_28d52d3d",
+        "filename": "lib/src/writecan.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1019609
+      },
+      "writtenOn": "2021-11-22T14:37:37Z",
+      "side": 1,
+      "message": "one sleep to much?",
+      "range": {
+        "startLine": 55,
+        "startChar": 4,
+        "endLine": 55,
+        "endChar": 86
+      },
+      "revId": "569cb42a52285a3288a5db05180d2ca40a3bd9ff",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eef4ffaa_39dbde3a",
+        "filename": "lib/src/writecan.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1019609
+      },
+      "writtenOn": "2021-11-22T14:37:37Z",
+      "side": 1,
+      "message": "c-style..",
+      "range": {
+        "startLine": 60,
+        "startChar": 8,
+        "endLine": 60,
+        "endChar": 14
+      },
+      "revId": "569cb42a52285a3288a5db05180d2ca40a3bd9ff",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37ac5967_aa7fa811",
+        "filename": "lib/src/writecan.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1019609
+      },
+      "writtenOn": "2021-11-22T14:37:37Z",
+      "side": 1,
+      "message": "c-style.. and do we want to print this on every write success?",
+      "range": {
+        "startLine": 64,
+        "startChar": 8,
+        "endLine": 64,
+        "endChar": 14
+      },
+      "revId": "569cb42a52285a3288a5db05180d2ca40a3bd9ff",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
