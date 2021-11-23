@@ -6,14 +6,14 @@
 #include "database.hpp"
 
 template <typename T1, typename T2>
-CanFrame ConvertToCanFrame(T1 &data_to_write, T2 &can_db){
+CanFrame ConvertToCanFrame(const T1 &data_to_write, const T2 &can_db){
     CanFrame frame;
     frame.id = can_db.frame_id;
     frame.len = can_db.length;
     int frame_data = static_cast<int>(data_to_write); // convert enum to int
 
     for (int i = 0; i < frame.len; ++i){
-        frame.data[i] = frame_data;
+        frame.data[i] = (frame_data >> i*8) & (255);
     }
     return frame;
 }
