@@ -8,5 +8,5 @@ include_directories(hal/include writecan/include socketcan/include ../app/inputh
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 add_library(socketcan STATIC socketcan/src/socketcan.cpp)
-add_library(hal SHARED hal/src/hal_monitor.cpp)
-add_library(writecan SHARED writecan/src/writecan.cpp)
+add_library(hal STATIC hal/src/hal_monitor.cpp)
+add_library(writecan STATIC writecan/src/writecan.cpp)

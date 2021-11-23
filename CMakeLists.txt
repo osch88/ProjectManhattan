@@ -10,6 +10,7 @@ project(project_manhattan LANGUAGES CXX)
 
 add_subdirectory(app/inputhandler)
 add_subdirectory(app/reo)
+add_subdirectory(app/avic)
 add_subdirectory(lib)
 
 
