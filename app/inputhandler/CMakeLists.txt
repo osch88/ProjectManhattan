@@ -6,7 +6,7 @@ project(inputhandler LANGUAGES CXX)
 
 include_directories(include ../../lib/writecan/include ../../lib/socketcan/include ../../lib/hal/include)
 
-set(EXECUTABLE_OUTPUT_PATH "../../../")
+set(EXECUTABLE_OUTPUT_PATH "../../")
 add_executable(inputhandler
     main.cpp
     src/keyboard_input.cpp)
