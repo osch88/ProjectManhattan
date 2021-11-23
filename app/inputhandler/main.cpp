@@ -2,9 +2,9 @@
 #include <thread>
 #include <chrono>
 
-#include "./include/database.hpp"
-#include "./include/keyboard_input.hpp"
-#include "../../lib/include/writecan.hpp"
+#include "database.hpp"
+#include "keyboard_input.hpp"
+#include "writecan.hpp"
 
 
 int main(int argc, char *argv[]){

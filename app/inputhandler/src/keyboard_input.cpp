@@ -1,8 +1,8 @@
 #include <iostream>
 #include <string>
 #include <unistd.h>
-#include "../include/keyboard_input.hpp"
-#include "../include/database.hpp"
+#include "keyboard_input.hpp"
+#include "database.hpp"
 
 //  ToDo: class
 //  ToDo: define keyinputs
