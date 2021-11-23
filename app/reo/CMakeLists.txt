@@ -6,9 +6,10 @@ project(reo LANGUAGES CXX)
 
 include_directories(include ../../lib/socketcan/include ../../lib/hal/include ../inputhandler/include)
 
-set(EXECUTABLE_OUTPUT_PATH "../../../")
+set(EXECUTABLE_OUTPUT_PATH "../../")
 add_executable(reo
     main.cpp
+    src/mainloop.cpp
     src/engine.cpp)
 set_target_properties(
     reo 
@@ -17,4 +18,4 @@ set_target_properties(
             SUFFIX ".out"
         )
 
-target_link_libraries(${PROJECT_NAME} PUBLIC socketcan hal)
+target_link_libraries(${PROJECT_NAME} PUBLIC socketcan hal pthread)

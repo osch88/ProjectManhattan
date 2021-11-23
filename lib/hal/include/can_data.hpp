@@ -77,14 +77,14 @@ namespace can_data_base{
         uint8_t position;
     };
     namespace config{
-        std::unordered_map<can_data_base::SignalInfo, can_data_base::FrameInfo> vcan0 = {
+        static const std::unordered_map<can_data_base::SignalInfo, can_data_base::FrameInfo> vcan0 = {
                                                                 //id    //length    //position
             {can_data_base::SignalInfo::kStartButtonSignal,     { 1,     2,          0}},
             {can_data_base::SignalInfo::kDriveModeSignal,       { 1,     2,          1}},
             {can_data_base::SignalInfo::kGasPedalSignal,        { 2,     1,          0}},
             {can_data_base::SignalInfo::kGearSignal,            { 3,     1,          0}}
         };
-        std::unordered_map<can_data_base::SignalInfo, can_data_base::FrameInfo> vcan1 = {
+        static const std::unordered_map<can_data_base::SignalInfo, can_data_base::FrameInfo> vcan1 = {
                                                                 //id    //length    //position
             {can_data_base::SignalInfo::kRpm,                   { 1,     2,          0}},
             {can_data_base::SignalInfo::kSpeed,                 { 1,     2,          1}}
