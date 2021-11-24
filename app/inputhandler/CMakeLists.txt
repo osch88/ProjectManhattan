@@ -9,6 +9,7 @@ include_directories(include ../../lib/writecan/include ../../lib/socketcan/inclu
 set(EXECUTABLE_OUTPUT_PATH "../../")
 add_executable(inputhandler
     main.cpp
+    src/server.cpp
     src/keyboard_input.cpp)
 set_target_properties(
     inputhandler 
@@ -17,4 +18,4 @@ set_target_properties(
         SUFFIX ".out"
     )
 
-target_link_libraries(${PROJECT_NAME} PUBLIC socketcan writecan)
+target_link_libraries(${PROJECT_NAME} PUBLIC socketcan writecan pthread)

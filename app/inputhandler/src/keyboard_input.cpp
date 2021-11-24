@@ -4,6 +4,7 @@
 #include "keyboard_input.hpp"
 #include "database.hpp"
 
+
 //  ToDo: class
 //  ToDo: define keyinputs
 
@@ -23,19 +24,19 @@
     L=108       decceleration
     */
 
-keyboardInput::keyboardInput(database_type::Database &_db) {
+/*keyboardInput::keyboardInput(database_type::Database &_db) {
     _db.ignition = database_type::Ignition::kStop;
     _db.gear = database_type::Gear::kPark;
     _db.drivemode = database_type::DriveMode::kEco;
     _db.gas = 0;
-}
+}*/
 void keyboardInput::keyReader(database_type::Database &_db) {
     char input;
     int int_input;
 
     inputText();
     system("stty raw");
-    input = getchar();
+        input = getchar();
     int_input = input;
     //  std::cout << input << std::endl;
 
