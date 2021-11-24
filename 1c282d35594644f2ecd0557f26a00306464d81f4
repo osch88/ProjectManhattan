@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb12ec00_d30a9a26",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1019609
+      },
+      "writtenOn": "2021-11-24T23:03:15Z",
+      "side": 1,
+      "message": "Please review threads implementation in inputhandler..",
+      "revId": "1c282d35594644f2ecd0557f26a00306464d81f4",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
