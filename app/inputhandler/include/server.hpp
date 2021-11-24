@@ -5,7 +5,6 @@
 #include <thread>
 #include <mutex>
 #include <shared_mutex>
-
 #include "keyboard_input.hpp"
 #include "socketcan.hpp"
 
@@ -16,10 +15,8 @@ class Server {
         database_type::Database data_;
         SocketCan socket_can_;
         keyboardInput key_board_;
-
         mutable std::shared_timed_mutex mutex_;
 
-        
     public:
         Server();
         void Run();
@@ -27,6 +24,5 @@ class Server {
         void CanWriter();
         
 };
-
 
 #endif

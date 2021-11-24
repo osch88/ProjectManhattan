@@ -13,7 +13,6 @@ void Server::Run() {
     if (socket_can_.Open(CAN_NAME) == kStatusOk){
         std::thread t1_(&Server::KeyBoard, this);
         std::thread t2_(&Server::CanWriter, this);
-
         while (true){
             //std::cout << "Main thread halted here!" << std::endl;
         }
@@ -25,12 +24,9 @@ void Server::Run() {
 void Server::KeyBoard() {
     while (true){
         database_type::Database temp_data;
-        //std::cout << "innan!"<<std::endl;
         key_board_.keyReader(temp_data);
-
         std::unique_lock<std::shared_timed_mutex> lock(mutex_);
         data_ = temp_data;
-        //std::cout << "efter!"<<std::endl;
     }
 }
         
