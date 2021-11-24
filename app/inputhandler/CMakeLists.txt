@@ -4,7 +4,7 @@ project(inputhandler LANGUAGES CXX)
 
 #set(BUILD_DIR_NAME "${CMAKE_SOURCE_DIR}/build")
 
-include_directories(include ../../lib/writecan/include ../../lib/socketcan/include ../../lib/hal/include)
+include_directories(include ../../lib/writecan/include ../../lib/socketcan/include ../../lib/hal/include ../reo/include)
 
 set(EXECUTABLE_OUTPUT_PATH "../../../")
 add_executable(inputhandler

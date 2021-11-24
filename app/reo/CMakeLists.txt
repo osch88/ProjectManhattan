@@ -4,7 +4,7 @@ project(reo LANGUAGES CXX)
 
 #set(BUILD_DIR_NAME "${CMAKE_SOURCE_DIR}/build")
 
-include_directories(include ../../lib/socketcan/include ../../lib/hal/include ../inputhandler/include)
+include_directories(include ../../lib/socketcan/include ../../lib/hal/include ../inputhandler/include ../../lib/writecan/include)
 
 set(EXECUTABLE_OUTPUT_PATH "../../../")
 add_executable(reo
@@ -17,4 +17,4 @@ set_target_properties(
             SUFFIX ".out"
         )
 
-target_link_libraries(${PROJECT_NAME} PUBLIC socketcan hal)
+target_link_libraries(${PROJECT_NAME} PUBLIC socketcan hal writecan)

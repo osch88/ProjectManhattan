@@ -4,6 +4,7 @@
 #include "socketcan.hpp"
 #include "can_data.hpp"
 #include "database.hpp"
+#include "reotype.hpp"
 
 template <typename T1, typename T2>
 CanFrame ConvertToCanFrame(const T1 &data_to_write, const T2 &can_db){
@@ -19,7 +20,7 @@ CanFrame ConvertToCanFrame(const T1 &data_to_write, const T2 &can_db){
 }
 
 bool WriteUserInputToCan(SocketCan &socket, database_type::Database &db, const int &msdelay);
-bool WriteCanFrameEmulator(SocketCan &socket, database_type::Database &db, const int &msdelay);
+bool WriteCanFrameEmulator(SocketCan &socket, reo_type::Database &db, const int &msdelay);
 
 
 #endif
