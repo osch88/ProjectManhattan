@@ -3,6 +3,7 @@
 #include <thread>
 #include <string>
 #include "mainloop.hpp"
+#include "writecan.hpp"
 
 void MainLoop::hal() {
     while(true) {
@@ -24,8 +25,12 @@ void MainLoop::emulator() {
 };
 
 void MainLoop::canSend() {
+    bool write_status = true;
+    int DELAY = 0;
     while (true)
     {
+        engine.getData(data_);
+        write_status = WriteCanFrameEmulator(socket_can_, data_, DELAY);
         std::cout << "Doing something..." << std::endl;
         std::this_thread::sleep_for(std::chrono::seconds(1));
     }
