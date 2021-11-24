@@ -41,10 +41,10 @@ bool WriteUserInputToCan(SocketCan &socket, database_type::Database &db, const i
     return ret; 
 }
 
-bool WriteCanFrameEmulator(SocketCan &socket, database_type::Database &db, const int &msdelay){
+bool WriteCanFrameEmulator(SocketCan &socket, reo_type::Database &db, const int &msdelay){
     bool ret = true;
     can_data_base::Rpm cb_rpm;
-    unsigned int db_rpm = db.RPM;
+    unsigned int db_rpm = db.rpm;
     const CanFrame rpm = ConvertToCanFrame(db_rpm, cb_rpm);
     
     auto write_rpm_status = socket.WriteToCan(rpm);
