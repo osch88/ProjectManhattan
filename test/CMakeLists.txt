@@ -1,7 +1,10 @@
 ## Project settings
 project(tests LANGUAGES CXX)
 
-include_directories(../lib/hal/include ../lib/socketcan/include ../app/inputhandler/include)
+include_directories( ../lib/hal/include
+                     ../lib/socketcan/include
+                     ../app/inputhandler/include
+                     ../app/reo/include)
 
 ## Test sources
 #add_executable(${PROJECT_NAME}
