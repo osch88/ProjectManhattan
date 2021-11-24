@@ -14,7 +14,7 @@ class MainLoop{
   // CONST
   const char canName[6] = "vcan0";
   // INIT
-  database_type::Database data_;
+  reo_type::Database data_;
   SocketCan socket_can_;
   HalMonitor hal_monitor_;
   Engine engine;
@@ -27,5 +27,6 @@ class MainLoop{
   void canSend();
   void run();
 };
+
 
 #endif  // APP_REO_INCLUDE_MAINLOOP_HPP_
