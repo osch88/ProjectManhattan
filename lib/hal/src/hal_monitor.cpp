@@ -2,10 +2,10 @@
 #include <iostream>
 
 HalMonitor::HalMonitor() {
-    latest_received_data_.drivemode = database_type::DriveMode::kEco;
+    latest_received_data_.drive_mode = reo_type::DriveMode::kEco;
     latest_received_data_.gas = 0;
-    latest_received_data_.gear = database_type::Gear::kPark;
-    latest_received_data_.ignition = database_type::Ignition::kStop;
+    latest_received_data_.gear = reo_type::Gear::kPark;
+    latest_received_data_.ignition = reo_type::Ignition::kStop;
 }
 
 bool HalMonitor::ReadFromCan(SocketCan &socket_can) {
@@ -28,13 +28,13 @@ bool HalMonitor::ReadFromCan(SocketCan &socket_can) {
 
 void HalMonitor::UpdateDataForGearPosition(const CanFrame &frame) {
     if (frame.data[0] == 0){
-        latest_received_data_.gear = database_type::Gear::kPark;
+        latest_received_data_.gear = reo_type::Gear::kPark;
     } else if (frame.data[0] == 1){
-        latest_received_data_.gear = database_type::Gear::kReverse;
+        latest_received_data_.gear = reo_type::Gear::kReverse;
     } else if (frame.data[0] == 2){
-        latest_received_data_.gear = database_type::Gear::kDrive;
+        latest_received_data_.gear = reo_type::Gear::kDrive;
     } else if (frame.data[0] == 3){
-        latest_received_data_.gear = database_type::Gear::kNeutral;
+        latest_received_data_.gear = reo_type::Gear::kNeutral;
     } else {
         std::cout << "invalid data in Gear position can data, not within valid range. " << std::endl;
     }
@@ -50,9 +50,9 @@ void HalMonitor::UpdateDataForPedalPosition(const CanFrame &frame) {
 
 void HalMonitor::UpdateDataForStartButton(const CanFrame &frame){
     if (frame.data[0] == 0){
-        latest_received_data_.ignition = database_type::Ignition::kStop;
+        latest_received_data_.ignition = reo_type::Ignition::kStop;
     } else if (frame.data[0] == 1){
-        latest_received_data_.ignition = database_type::Ignition::kStart;
+        latest_received_data_.ignition = reo_type::Ignition::kStart;
     } else {
         std::cout << "invalid data in start button can data, not within valid range. " << std::endl;
     }
@@ -60,19 +60,19 @@ void HalMonitor::UpdateDataForStartButton(const CanFrame &frame){
 
 void HalMonitor::UpdateDataForDriveMode(const CanFrame &frame){
     if (frame.data[1] == 0){
-        latest_received_data_.drivemode = database_type::DriveMode::kEco;
+        latest_received_data_.drive_mode = reo_type::DriveMode::kEco;
     } else if (frame.data[1] == 0){
-        latest_received_data_.drivemode = database_type::DriveMode::kSport;
+        latest_received_data_.drive_mode = reo_type::DriveMode::kSport;
     } else {
         std::cout << "invalid data in Drive Mode can data, not within valid range. " << std::endl;
     }
 }
 
-void HalMonitor::GetCanData(database_type::Database &data) {
+void HalMonitor::GetCanData(reo_type::Database &data) {
     data = latest_received_data_;
 }
 /*
-void HalMonitor::WriteEmulatorDataToCan(const SocketCan &socket_can, const database_type::Database &message) const {
+void HalMonitor::WriteEmulatorDataToCan(const SocketCan &socket_can, const reo_type::Database &message) const {
     
 }
 */
