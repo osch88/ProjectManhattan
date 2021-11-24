@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db4f87ff_c3b21134",
+        "filename": "app/reo/include/mainloop.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1019609
+      },
+      "writtenOn": "2021-11-24T12:38:02Z",
+      "side": 1,
+      "message": "private variables should end with underscore..",
+      "range": {
+        "startLine": 17,
+        "startChar": 26,
+        "endLine": 17,
+        "endChar": 30
+      },
+      "revId": "e0c42c80181e7b00062342470148e40d66ea54de",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
