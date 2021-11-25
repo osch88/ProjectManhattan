@@ -22,6 +22,30 @@
       },
       "revId": "cae473d75f641d368d67b2e85f8f53b94c85f647",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "008e2ff4_59f448d9",
+        "filename": "lib/hal/src/hal_monitor.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1019612
+      },
+      "writtenOn": "2021-11-25T10:35:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "68ee6f09_dc2162e9",
+      "range": {
+        "startLine": 47,
+        "startChar": 91,
+        "endLine": 47,
+        "endChar": 104
+      },
+      "revId": "cae473d75f641d368d67b2e85f8f53b94c85f647",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }
