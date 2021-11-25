@@ -22,8 +22,12 @@ void Server::Run() {
 }
 
 void Server::KeyBoard() {
+    database_type::Database temp_data;
+    temp_data.drivemode = database_type::DriveMode::kEco;
+    temp_data.gas = 0;
+    temp_data.gear = database_type::Gear::kPark;
+    temp_data.ignition = database_type::Ignition::kStop;
     while (true){
-        database_type::Database temp_data;
         key_board_.keyReader(temp_data);
         std::unique_lock<std::shared_timed_mutex> lock(mutex_);
         data_ = temp_data;
