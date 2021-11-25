@@ -30,11 +30,11 @@ void HalMonitor::UpdateDataForGearPosition(const CanFrame &frame) {
     if (frame.data[0] == 0){
         latest_received_data_.gear = reo_type::Gear::kPark;
     } else if (frame.data[0] == 1){
-        latest_received_data_.gear = reo_type::Gear::kReverse;
+        latest_received_data_.gear = reo_type::Gear::kNeutral;
     } else if (frame.data[0] == 2){
         latest_received_data_.gear = reo_type::Gear::kDrive;
     } else if (frame.data[0] == 3){
-        latest_received_data_.gear = reo_type::Gear::kNeutral;
+        latest_received_data_.gear = reo_type::Gear::kReverse;
     } else {
         std::cout << "invalid data in Gear position can data, not within valid range. " << std::endl;
     }
@@ -44,7 +44,7 @@ void HalMonitor::UpdateDataForPedalPosition(const CanFrame &frame) {
     if (frame.data[0] >= 0 and frame.data[0] <= 100){
         latest_received_data_.gas = frame.data[0];
     } else {
-        std::cout << "invalid data in Pedal Position can data, not within valid range. " << std::endl;
+        std::cout << "invalid data in Pedal Position can data, not within valid range. "<< frame.data[0] << std::endl;
     }
 }
 
