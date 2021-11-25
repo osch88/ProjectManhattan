@@ -43,14 +43,23 @@ bool WriteUserInputToCan(SocketCan &socket, database_type::Database &db, const i
 
 bool WriteCanFrameEmulator(SocketCan &socket, reo_type::Database &db, const int &msdelay){
     bool ret = true;
+    
+    // RPM
     can_data_base::Rpm cb_rpm;
     unsigned int db_rpm = db.rpm;
     const CanFrame rpm = ConvertToCanFrame(db_rpm, cb_rpm);
+    auto write_rpm_status_rpm = socket.WriteToCan(rpm);
     
-    auto write_rpm_status = socket.WriteToCan(rpm);
-    
-    if (write_rpm_status != kStatusOk){
-        std::cout << "Something went wrong on socket write for rpm, error code : " << write_rpm_status  << std::endl;
+    std::this_thread::sleep_for(std::chrono::milliseconds(msdelay)); //delay for frame
+
+    // SPEED
+    can_data_base::Speed cb_speed;
+    unsigned int db_speed = db.speed;
+    const CanFrame speed = ConvertToCanFrame(db_speed, cb_speed);
+    auto write_rpm_status_speed = socket.WriteToCan(speed);
+  
+    if (write_rpm_status_rpm != kStatusOk || write_rpm_status_speed != kStatusOk){
+        std::cout << "Something went wrong on socket write"  << std::endl;
         ret = false;
     }
     return ret;

@@ -27,23 +27,24 @@ void MainLoop::emulator() {
 void MainLoop::canSend() {
     bool write_status = true;
     int DELAY = 0;
-    while (true)
-    {
-        engine.getData(data_);
-        write_status = WriteCanFrameEmulator(socket_can_, data_, DELAY);
-        std::cout << "Doing something..." << std::endl;
-        std::this_thread::sleep_for(std::chrono::seconds(1));
+    while (true) {
+        {
+            std::unique_lock<std::shared_timed_mutex> lock(mutex_);
+            engine.getData(data_);
+        }
+        {
+            std::shared_lock<std::shared_timed_mutex> lock(mutex_);
+            write_status = WriteCanFrameEmulator(socket_can_, data_, DELAY);
+        }
+        std::this_thread::sleep_for(std::chrono::microseconds(500));
     }
-    
 }
 
 void MainLoop::run() {
     if (socket_can_.Open(canName) == kStatusOk) {
         std::thread t1_(&MainLoop::hal, this);
         std::thread t2_(&MainLoop::emulator, this);
-        // std::thread t3_(&MainLoop::canSend, this);
-        while (true);
-        // std::cout << "Working!" << std::endl;
+        canSend();
     } else {
         std::cout << "No socket available" << std::endl;
     }

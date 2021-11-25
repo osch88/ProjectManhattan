@@ -6,6 +6,7 @@ project(project_manhattan LANGUAGES CXX)
 
 #set build directory
 #set(BUILD_DIR_NAME "${CMAKE_SOURCE_DIR}/build")
+set(CMAKE_CXX_FLAGS: -Wall)
 
 
 add_subdirectory(app/inputhandler)

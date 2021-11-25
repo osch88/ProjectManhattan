@@ -27,6 +27,7 @@ struct Database {
     EngineStatus engine_status;
     unsigned int gas;
     unsigned int rpm;
+    unsigned int speed = 100; //FIXME: when we have an outout of speed, remove the initial value
 };
 }  
 #endif  
