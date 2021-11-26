@@ -12,19 +12,16 @@ void yourStuff::YouHaveJustRecievedACANFrame(const canfd_frame * const _frame) {
         case 4: {
             // from CAN bus
             uint16_t rpm = *((uint16_t*)(_frame->data));
-            // uint8_t speed = *((uint8_t*)(_frame->data+2));
+            uint8_t speed = *((uint8_t*)(_frame->data+2));
 
             this->InstrumentCluster.setRPM(rpm);
+            this->InstrumentCluster.setSpeed(speed);
             
             // default values seperated from CAN
             this->InstrumentCluster.ignite(1);
             this->InstrumentCluster.setFuelGauges(125);
             this->InstrumentCluster.setTemperatureGauges(150);
             this->InstrumentCluster.setOilTemperatureGauges(150);
-        } break;
-        case 5: {
-            uint8_t speed = _frame->data[0];
-            this->InstrumentCluster.setSpeed(speed);
         } break;
         default:
             break;
