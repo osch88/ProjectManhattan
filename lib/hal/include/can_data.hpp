@@ -45,18 +45,18 @@ namespace can_data_base{
         */
     };
 
-    struct Speed{
+    struct Rpm{
         uint32_t frame_id = 4;
-        uint8_t length = 1;
-        uint8_t position = 2;
+        uint16_t length = 2;
+        uint8_t position = 0;
         /* Data interpretation: 
          * 1 : 1 conversion
         */
     };
 
-    struct Rpm{
-        uint32_t frame_id = 4;
-        uint16_t length = 2;
+    struct Speed{
+        uint32_t frame_id = 5;
+        uint8_t length = 1;
         uint8_t position = 0;
         /* Data interpretation: 
          * 1 : 1 conversion
@@ -76,20 +76,20 @@ namespace can_data_base{
         uint16_t length;
         uint8_t position;
     };
-    namespace config{
-        static const std::unordered_map<can_data_base::SignalInfo, can_data_base::FrameInfo> vcan0 = {
-                                                                //id    //length    //position
-            {can_data_base::SignalInfo::kStartButtonSignal,     { 1,     2,          0}},
-            {can_data_base::SignalInfo::kDriveModeSignal,       { 1,     2,          1}},
-            {can_data_base::SignalInfo::kGasPedalSignal,        { 2,     1,          0}},
-            {can_data_base::SignalInfo::kGearSignal,            { 3,     1,          0}}
-        };
-        static const std::unordered_map<can_data_base::SignalInfo, can_data_base::FrameInfo> vcan1 = {
-                                                                //id    //length    //position
-            {can_data_base::SignalInfo::kRpm,                   { 1,     2,          0}},
-            {can_data_base::SignalInfo::kSpeed,                 { 1,     2,          1}}
-        };
-    }
+    // namespace config{
+    //     static const std::unordered_map<can_data_base::SignalInfo, can_data_base::FrameInfo> vcan0 = {
+    //                                                             //id    //length    //position
+    //         {can_data_base::SignalInfo::kStartButtonSignal,     { 1,     2,          0}},
+    //         {can_data_base::SignalInfo::kDriveModeSignal,       { 1,     2,          1}},
+    //         {can_data_base::SignalInfo::kGasPedalSignal,        { 2,     1,          0}},
+    //         {can_data_base::SignalInfo::kGearSignal,            { 3,     1,          0}}
+    //     };
+    //     static const std::unordered_map<can_data_base::SignalInfo, can_data_base::FrameInfo> vcan1 = {
+    //                                                             //id    //length    //position
+    //         {can_data_base::SignalInfo::kRpm,                   { 1,     2,          0}},
+    //         {can_data_base::SignalInfo::kSpeed,                 { 1,     2,          1}}
+    //     };
+    // }
 }
 
 #endif
