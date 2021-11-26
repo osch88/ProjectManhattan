@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d54150f_df2b53af",
+        "filename": "README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1019609
+      },
+      "writtenOn": "2021-11-26T09:40:50Z",
+      "side": 1,
+      "message": ".out",
+      "range": {
+        "startLine": 36,
+        "startChar": 2,
+        "endLine": 36,
+        "endChar": 7
+      },
+      "revId": "09996fc9a9c2e0bcff239d99692f3eaba80521b2",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
