@@ -72,7 +72,7 @@ void keyboardInput::switchCaseInput(database_type::Database &_db, const int &_in
         _db.gear = database_type::Gear::kReverse;
         break;
     case 108:
-        this->gasPedalPos += 10;
+        this->gasPedalPos += 1;
         if (this->gasPedalPos > 100) {
             this->gasPedalPos = 100;
         }
@@ -80,7 +80,7 @@ void keyboardInput::switchCaseInput(database_type::Database &_db, const int &_in
         _db.gas = gasPedalPos;
         break;
     case 107:
-        this->gasPedalPos -= 10;
+        this->gasPedalPos -= 1;
         if (this->gasPedalPos < 0) {
             this->gasPedalPos = 0;
         }
