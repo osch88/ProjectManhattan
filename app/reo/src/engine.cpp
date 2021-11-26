@@ -115,7 +115,7 @@ void Engine::set_inpVal(const reo_type::Database &_input) {
 
 void Engine::getData(reo_type::Database &_input) {
     _input.rpm = rpm_;
-    _input.speed = speed_;
+    _input.speed = speed_ * 3.6;
     _input.gear_number = gear_number_;
     _input.gear = gear_;
 }
