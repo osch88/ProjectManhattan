@@ -9,7 +9,8 @@ namespace can_data_base{
 
     struct GearPosition{
         uint32_t frame_id = 3;
-        uint8_t length = 1;
+        uint8_t frame_length = 1;
+        uint8_t data_length = 1;
         uint8_t position = 0;
         /* Data interpretation: 
          * 0 = Park
@@ -21,13 +22,15 @@ namespace can_data_base{
 
     struct PedalPosition{
         uint32_t frame_id = 2;
-        uint8_t length = 1;
+        uint8_t frame_length = 1;
+        uint8_t data_length = 1;
         uint8_t position = 0;
     };
 
     struct StartButton{
         uint32_t frame_id = 1;
-        uint8_t length = 1;
+        uint8_t frame_length = 2;
+        uint8_t data_length = 1;
         uint8_t position = 0;
         /* Data interpretation: 
          * 0 = Stop
@@ -37,7 +40,8 @@ namespace can_data_base{
 
     struct DriveMode{
         uint32_t frame_id = 1;
-        uint8_t length = 1;
+        uint8_t frame_length = 2;
+        uint8_t data_length = 1;
         uint8_t position = 1;
         /* Data interpretation: 
          * 0 = Eco
@@ -45,18 +49,20 @@ namespace can_data_base{
         */
     };
 
-    struct Rpm{
+    struct Speed{
         uint32_t frame_id = 4;
-        uint16_t length = 2;
-        uint8_t position = 0;
+        uint8_t frame_length = 3;
+        uint8_t data_length = 1;
+        uint8_t position = 2;
         /* Data interpretation: 
          * 1 : 1 conversion
         */
     };
 
-    struct Speed{
-        uint32_t frame_id = 5;
-        uint8_t length = 1;
+    struct Rpm{
+        uint32_t frame_id = 4;
+        uint8_t frame_length = 3;
+        uint8_t data_length = 2;
         uint8_t position = 0;
         /* Data interpretation: 
          * 1 : 1 conversion
