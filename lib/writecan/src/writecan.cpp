@@ -53,15 +53,24 @@ bool WriteCanFrameEmulator(SocketCan &socket, reo_type::Database &db, const int 
 
     can_data_base::Rpm cb_rpm;
     unsigned int db_rpm = db.rpm;
-    CanFrame rpm_speed;
-    ConvertToCanFrame(rpm_speed, db_rpm, cb_rpm);
+    CanFrame emulator;
+    ConvertToCanFrame(emulator, db_rpm, cb_rpm);
 
     can_data_base::Speed cb_speed;
     unsigned int db_speed = db.speed;
-    ConvertToCanFrame(rpm_speed, db_speed, cb_speed);
-    auto write_rpm_status = socket.WriteToCan(rpm_speed);
+    ConvertToCanFrame(emulator, db_speed, cb_speed);
+
+    can_data_base::GearPindle cb_gear_pindle;
+    reo_type::Gear db_gear_pindle = db.gear;
+    ConvertToCanFrame(emulator, db_gear_pindle, cb_gear_pindle);
+
+    can_data_base::GearNumber cb_gear_number;
+    unsigned int db_gear_number = db.gear_number;
+    ConvertToCanFrame(emulator, db_gear_number, cb_gear_number);
+    
+    auto write_emulator_status = socket.WriteToCan(emulator);
   
-    if (write_rpm_status != kStatusOk || write_rpm_status != kStatusOk){
+    if (write_emulator_status != kStatusOk || write_emulator_status != kStatusOk){
         std::cout << "Something went wrong on socket write"  << std::endl;
         ret = false;
     }

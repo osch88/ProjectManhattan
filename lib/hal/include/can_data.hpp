@@ -51,7 +51,7 @@ namespace can_data_base{
 
     struct Speed{
         uint32_t frame_id = 4;
-        uint8_t frame_length = 3;
+        uint8_t frame_length = 5;
         uint8_t data_length = 1;
         uint8_t position = 2;
         /* Data interpretation: 
@@ -61,13 +61,28 @@ namespace can_data_base{
 
     struct Rpm{
         uint32_t frame_id = 4;
-        uint8_t frame_length = 3;
+        uint8_t frame_length = 5;
         uint8_t data_length = 2;
         uint8_t position = 0;
         /* Data interpretation: 
          * 1 : 1 conversion
         */
     };
+
+     struct GearPindle{
+        uint32_t frame_id = 4;
+        uint8_t frame_length = 5;
+        uint8_t data_length = 1;
+        uint8_t position = 3;
+    };
+
+    struct GearNumber{
+        uint32_t frame_id = 4;
+        uint8_t frame_length = 5;
+        uint8_t data_length = 1;
+        uint8_t position = 4;
+    };
+    
 
     enum class SignalInfo {
         kGearSignal,
