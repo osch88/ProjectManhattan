@@ -24,12 +24,6 @@
     L=108       decceleration
     */
 
-/*keyboardInput::keyboardInput(database_type::Database &_db) {
-    _db.ignition = database_type::Ignition::kStop;
-    _db.gear = database_type::Gear::kPark;
-    _db.drivemode = database_type::DriveMode::kEco;
-    _db.gas = 0;
-}*/
 void keyboardInput::keyReader(database_type::Database &_db) {
     char input;
     int int_input;
@@ -38,7 +32,6 @@ void keyboardInput::keyReader(database_type::Database &_db) {
     system("stty raw");
         input = getchar();
     int_input = input;
-    //  std::cout << input << std::endl;
 
     system("stty cooked");
     system("clear");
@@ -97,7 +90,6 @@ void keyboardInput::switchCaseInput(database_type::Database &_db, const int &_in
         break;
     case 46:
         this->running = false;
-        std::cout << "Gracefully shutting down in: 3 seconds" << std::endl;
         for (auto i = 3; i > 0; i--) {
             std::cout << "Gracefully shutting down in: " << i << " seconds" << std::endl;
             sleep(1);
@@ -117,40 +109,6 @@ void keyboardInput::inputText() {
         << "\rD: gear position in drive \n\rR: gear position in reverse \n\rL: accelerate \n"
         << "\rK: decelerate \n\r1: drive mode normal \n\r2: drive mode sport \n\r. : gracefully shutdown" << std::endl;
 }
-void keyboardInput::printState(database_type::Database &_db) {  //  When called, prints state of input
-    std::cout << ignitionToString(_db.ignition) << std::endl;
-    std::cout << gearToString(_db.gear) << std::endl;
-    std::cout << driveModeToString(_db.drivemode) << std::endl;
-    std::cout << "Throttle position: " << _db.gas << " %" << std::endl;
-}
-std::string keyboardInput::ignitionToString(database_type::Ignition &_e) {
-    std::string res;
-    switch (_e) {
-        case database_type::Ignition::kStart: res = "Engine is on"; break;
-        case database_type::Ignition::kStop: res = "Engine is off"; break;
-        default: res = "Nothing defined";
-    }
-    return res;
-}
-std::string keyboardInput::gearToString(database_type::Gear &_e) {
-    std::string res;
-    switch (_e) {
-        case database_type::Gear::kPark: res = "Gear in park"; break;
-        case database_type::Gear::kNeutral: res = "Gear in neutral"; break;
-        case database_type::Gear::kDrive: res = "Gear in drive"; break;
-        case database_type::Gear::kReverse: res = "Gear in reverse"; break;
-        default: res = "Nothing defined";
-    }
-    return res;
-}
-std::string keyboardInput::driveModeToString(database_type::DriveMode &_e) {
-    std::string res;
-    switch (_e) {
-        case database_type::DriveMode::kEco: res = "Drive mode: ECO"; break;
-        case database_type::DriveMode::kSport: res = "Drive mode: SPORT"; break;
-        default: res = "Nothing defined";
-    }
-    return res;
-}
+
 
 keyboardInput::~keyboardInput(){};
