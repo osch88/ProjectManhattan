@@ -34,21 +34,6 @@ void Engine::UpdateRpm(const reo_type::Database &_input){
     else if (engine_status_ == reo_type::EngineStatus::kOn && gear_ == reo_type::Gear::kPark && rpm_ == 0){
         rpm_ = MIN_RPM;
     }
-    /*else if (engine_status_ == reo_type::EngineStatus::kOn && gear_ != reo_type::Gear::kPark){ // ska denna endast gälla ökning av gas?
-        double acceleration = (double)_input.gas - (double)throttle_;
-        const int rpm_increase = 1;
-        // lower bound points to the first element in map not greater than given key, second gives the coefficient
-        double coeff = (*(coefficients_.lower_bound(rpm_))).second; 
-        //std::cout << "RPM: " << rpm_ << "Coeff: " << coeff << std::endl;
-        if (_input.gas != 0 && acceleration == 0){
-            acceleration = 0.3;
-        }
-        rpm_ += coeff*gear_ratio_[gear_number_]*rpm_increase *acceleration;
-        if (rpm_ > MAX_RPM){
-            rpm_ = MAX_RPM - 100;
-        }
-        throttle_ = _input.gas;
-    }*/
 
     else if (engine_status_ == reo_type::EngineStatus::kOn && gear_ != reo_type::Gear::kPark){ // ska denna endast gälla ökning av gas?
         const double pi = 3.14;
@@ -61,39 +46,15 @@ void Engine::UpdateRpm(const reo_type::Database &_input){
             rpm_ = MAX_RPM - 100;
         }
         
-
         throttle_ = _input.gas;
-        
-        /*double acceleration = (double)_input.gas - (double)throttle_;
-        const double rpm_increase = 0.05;
-        // lower bound points to the first element in map not greater than given key, second gives the coefficient
-        double coeff = (*(coefficients_.lower_bound(rpm_))).second;
-        if (_input.gas == 0);
-        else rpm_ += (gear_ratio_[gear_number_] * coeff * acceleration) + rpm_increase ;//+ acceleration * rpm_increase;
-        if (rpm_ > MAX_RPM*_input.gas/100){
-            rpm_ = MAX_RPM*_input.gas/100 - 100;
-        }         
-        throttle_ = _input.gas;*/
     }
-    /*else if (engine_status_ == reo_type::EngineStatus::kOn && gear_ != reo_type::Gear::kPark && throttle_ == 0 && rpm_ > MIN_RPM){
-        const double rpm_decrease = 10;
-        rpm_ -= gear_ratio_[gear_number_]*rpm_decrease;
-        if (rpm_ < MIN_RPM){
-            rpm_ = MIN_RPM + 50;
-        }
-
-    }*/
-
-//std::cout << "speed: " << speed_ * 3.6 << std::endl;
-//std::cout << "rpm: " << rpm_ << std::endl;
 }
 
 double Engine::CalcTractionForce(){
     double torquemax = (*(maxtorque_.lower_bound(rpm_))).second; 
     double torque = torquemax * throttle_/100;
     double traction_force = (torque * gear_ratio_[gear_number_] * drive_shaft_ratio_ *efficiency_)/wheel_radius_;
-    //std::cout << "torqe max: " << torquemax << std::endl; 
-    //std::cout << "traction force: " << traction_force << std::endl; 
+    
     return traction_force; 
 }
 
@@ -130,8 +91,7 @@ void Engine::CalcSpeed(){
     double aero_force = CalcAeroForce();
     double acceleration = (traction_force - road_force - aero_force) / vehicle_mass_;
     speed_ +=  acceleration * 0.01; 
-    //std::cout << "acceleration: " << acceleration << std::endl;
-    //std::cout << "speed: " << speed_ << std::endl;
+
     //TODO: replace with sample time variable 
 }
 
@@ -156,6 +116,8 @@ void Engine::set_inpVal(const reo_type::Database &_input) {
 void Engine::getData(reo_type::Database &_input) {
     _input.rpm = rpm_;
     _input.speed = speed_;
+    _input.gear_number = gear_number_;
+    _input.gear = gear_;
 }
 
 
