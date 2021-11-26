@@ -13,9 +13,21 @@ void yourStuff::YouHaveJustRecievedACANFrame(const canfd_frame * const _frame) {
             // from CAN bus
             uint16_t rpm = *((uint16_t*)(_frame->data));
             uint8_t speed = *((uint8_t*)(_frame->data+2));
+            char gearPindle = _frame->data[3];
+            char gearNumber = _frame->data[4];
+
+            if(gearPindle == 3) {
+                gearPindle = 2;
+                gearNumber = 1;
+            }
+            else if(gearPindle == 2) {
+                gearPindle = 3;
+            }
 
             this->InstrumentCluster.setRPM(rpm);
             this->InstrumentCluster.setSpeed(speed);
+            this->InstrumentCluster.setGear(gearNumber);
+            this->InstrumentCluster.setGearPindle_int(gearPindle);
             
             // default values seperated from CAN
             this->InstrumentCluster.ignite(1);
