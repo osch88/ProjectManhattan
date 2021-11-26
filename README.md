@@ -20,18 +20,18 @@ apt install
     qml-module-qtquick-extras
 ```
 
-#### 2. Run build script
+#### 2. Run build script from tools folder
 ```
-bash tools/build.sh
+./build.sh
 ```
 
-#### 3. Then start up VCAN"
+#### 3. Then start up VCAN0 from tools folder
 ```
-bash tools/set_up_vcan.sh
+./set_up_vcan.sh
 ```
 #### 4. Run the binaries located in build folder 
 ```
-./build/input_handler.out
-./build/reo.out
-./build/avic -c vcan0
+./input_handler.out
+./reo.out
+./avic -c vcan0
 ```
