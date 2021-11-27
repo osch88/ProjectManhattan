@@ -12,12 +12,12 @@ bool HalMonitor::ReadFromCan(SocketCan &socket_can) {
     bool return_value = true;
     CanFrame frame;
     if (socket_can.ReadFromCan(frame) == SocketCanStatus::kStatusOk) {
-        if (frame.id == 1 ) { //TODO: use can database to get the corresponding can ids.
+        if (frame.id == (can_data_base::start_button.frame_id or can_data_base::drive_mode.frame_id)) { //TODO: use can database to get the corresponding can ids.
             UpdateDataForStartButton(frame);
             UpdateDataForDriveMode(frame);
-        } else if (frame.id == 2) {
+        } else if (frame.id == can_data_base::pedal_position.frame_id) {
             UpdateDataForPedalPosition(frame);
-        } else if (frame.id == 3) {
+        } else if (frame.id == can_data_base::gear_position.frame_id) {
             UpdateDataForGearPosition(frame);
         }
     } else {
@@ -71,8 +71,3 @@ void HalMonitor::UpdateDataForDriveMode(const CanFrame &frame){
 void HalMonitor::GetCanData(reo_type::Database &data) {
     data = latest_received_data_;
 }
-/*
-void HalMonitor::WriteEmulatorDataToCan(const SocketCan &socket_can, const reo_type::Database &message) const {
-    
-}
-*/

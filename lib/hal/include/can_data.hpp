@@ -2,115 +2,94 @@
 #define CAN_DATA_H
 
 #include <cstdint>
-#include <unordered_map>
-
 
 namespace can_data_base{
 
     struct GearPosition{
-        uint32_t frame_id = 3;
-        uint8_t frame_length = 1;
-        uint8_t data_length = 1;
-        uint8_t position = 0;
+        const uint32_t frame_id = 3;
+        const uint8_t frame_length = 1;
+        const uint8_t data_length = 1;
+        const uint8_t position = 0;
         /* Data interpretation: 
          * 0 = Park
-         * 1 = Reverse
+         * 1 = Neutral
          * 2 = Drive
-         * 3 = Neutral
+         * 3 = Reverse
         */
     };
+    constexpr struct GearPosition gear_position;
 
     struct PedalPosition{
-        uint32_t frame_id = 2;
-        uint8_t frame_length = 1;
-        uint8_t data_length = 1;
-        uint8_t position = 0;
+        const uint32_t frame_id = 2;
+        const uint8_t frame_length = 1;
+        const uint8_t data_length = 1;
+        const uint8_t position = 0;
+        /* Data interpretation: 
+         * 1 : 1 conversion
+        */
     };
+    constexpr struct PedalPosition pedal_position;
 
     struct StartButton{
-        uint32_t frame_id = 1;
-        uint8_t frame_length = 2;
-        uint8_t data_length = 1;
-        uint8_t position = 0;
+        const uint32_t frame_id = 1;
+        const uint8_t frame_length = 2;
+        const uint8_t data_length = 1;
+        const uint8_t position = 0;
         /* Data interpretation: 
          * 0 = Stop
          * 1 = Start
         */
     };
+    constexpr struct StartButton start_button;
 
     struct DriveMode{
-        uint32_t frame_id = 1;
-        uint8_t frame_length = 2;
-        uint8_t data_length = 1;
-        uint8_t position = 1;
+        const uint32_t frame_id = 1;
+        const uint8_t frame_length = 2;
+        const uint8_t data_length = 1;
+        const uint8_t position = 1;
         /* Data interpretation: 
          * 0 = Eco
          * 1 = Sport
         */
     };
-
+    constexpr struct DriveMode drive_mode;
     struct Speed{
-        uint32_t frame_id = 4;
-        uint8_t frame_length = 5;
-        uint8_t data_length = 1;
-        uint8_t position = 2;
+        const uint32_t frame_id = 4;
+        const uint8_t frame_length = 5;
+        const uint8_t data_length = 1;
+        const uint8_t position = 2;
         /* Data interpretation: 
          * 1 : 1 conversion
         */
     };
+    constexpr struct Speed speed;
 
     struct Rpm{
-        uint32_t frame_id = 4;
-        uint8_t frame_length = 5;
-        uint8_t data_length = 2;
-        uint8_t position = 0;
+        const uint32_t frame_id = 4;
+        const uint8_t frame_length = 5;
+        const uint8_t data_length = 2;
+        const uint8_t position = 0;
         /* Data interpretation: 
          * 1 : 1 conversion
         */
     };
+    constexpr struct Rpm rpm;
 
      struct GearPindle{
-        uint32_t frame_id = 4;
-        uint8_t frame_length = 5;
-        uint8_t data_length = 1;
-        uint8_t position = 3;
+        const uint32_t frame_id = 4;
+        const uint8_t frame_length = 5;
+        const uint8_t data_length = 1;
+        const uint8_t position = 3;
     };
+    constexpr struct GearPindle gear_pindle;
 
     struct GearNumber{
-        uint32_t frame_id = 4;
-        uint8_t frame_length = 5;
-        uint8_t data_length = 1;
-        uint8_t position = 4;
+        const uint32_t frame_id = 4;
+        const uint8_t frame_length = 5;
+        const uint8_t data_length = 1;
+        const uint8_t position = 4;
     };
-    
-
-    enum class SignalInfo {
-        kGearSignal,
-        kStartButtonSignal,
-        kDriveModeSignal,
-        kGasPedalSignal,
-        kRpm,
-        kSpeed
-    };
-    struct FrameInfo {
-        uint32_t frame_id;
-        uint16_t length;
-        uint8_t position;
-    };
-    // namespace config{
-    //     static const std::unordered_map<can_data_base::SignalInfo, can_data_base::FrameInfo> vcan0 = {
-    //                                                             //id    //length    //position
-    //         {can_data_base::SignalInfo::kStartButtonSignal,     { 1,     2,          0}},
-    //         {can_data_base::SignalInfo::kDriveModeSignal,       { 1,     2,          1}},
-    //         {can_data_base::SignalInfo::kGasPedalSignal,        { 2,     1,          0}},
-    //         {can_data_base::SignalInfo::kGearSignal,            { 3,     1,          0}}
-    //     };
-    //     static const std::unordered_map<can_data_base::SignalInfo, can_data_base::FrameInfo> vcan1 = {
-    //                                                             //id    //length    //position
-    //         {can_data_base::SignalInfo::kRpm,                   { 1,     2,          0}},
-    //         {can_data_base::SignalInfo::kSpeed,                 { 1,     2,          1}}
-    //     };
-    // }
+    constexpr struct GearNumber gear_number;
 }
 
 #endif

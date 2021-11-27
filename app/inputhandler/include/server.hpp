@@ -22,7 +22,6 @@ class Server {
         void Run();
         void KeyBoard();
         void CanWriter();
-        
 };
 
 #endif

@@ -16,6 +16,5 @@ class HalMonitor{
         HalMonitor();
         bool ReadFromCan(SocketCan &socket_can);  //returns true if new frame is read from CAN.
         void GetCanData(reo_type::Database &data);
-        //void WriteEmulatorDataToCan(const SocketCan &socket_can, const reo_type::Database &message) const;
 };
 #endif

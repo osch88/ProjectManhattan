@@ -12,10 +12,7 @@ Server::Server() {
 void Server::Run() {
     if (socket_can_.Open(CAN_NAME) == kStatusOk){
         std::thread t1_(&Server::KeyBoard, this);
-        //std::thread t2_(&Server::CanWriter, this);
         CanWriter();
-        //while (true){
-        //}
     } else {
         std::cout << "Cannot open can socket!" << std::endl;
     }
