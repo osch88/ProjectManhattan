@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e114b366_5f1d1d7b",
+        "filename": "app/inputhandler/src/server.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1019612
+      },
+      "writtenOn": "2021-11-29T10:47:34Z",
+      "side": 1,
+      "message": "should this be inside the hal?",
+      "range": {
+        "startLine": 46,
+        "startChar": 28,
+        "endLine": 46,
+        "endChar": 43
+      },
+      "revId": "3aed9c0653b55a2289f4b7593bcc7b596812b85f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06f23914_b85caffb",
+        "filename": "lib/hal/include/can_data.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1019612
+      },
+      "writtenOn": "2021-11-29T10:47:34Z",
+      "side": 1,
+      "message": "frame length needs to be 3 here if same frame is used for indicator",
+      "revId": "3aed9c0653b55a2289f4b7593bcc7b596812b85f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
