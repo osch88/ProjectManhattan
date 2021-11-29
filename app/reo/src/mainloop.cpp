@@ -17,8 +17,10 @@ void MainLoop::hal() {
 
 void MainLoop::emulator() {
     while (true) {
-        std::shared_lock<std::shared_timed_mutex> lock(mutex_);
-        engine.set_inpVal(data_);
+        {
+            std::shared_lock<std::shared_timed_mutex> lock(mutex_);
+            engine.set_inpVal(data_);
+        }
         engine.print();
         std::this_thread::sleep_for(std::chrono::microseconds(500));
     }
