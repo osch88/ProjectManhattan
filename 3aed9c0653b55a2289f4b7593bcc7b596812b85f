@@ -39,6 +39,24 @@
       "message": "frame length needs to be 3 here if same frame is used for indicator",
       "revId": "3aed9c0653b55a2289f4b7593bcc7b596812b85f",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1b73cc1_b903fa60",
+        "filename": "lib/hal/include/can_data.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1019612
+      },
+      "writtenOn": "2021-11-29T14:16:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06f23914_b85caffb",
+      "revId": "3aed9c0653b55a2289f4b7593bcc7b596812b85f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }
