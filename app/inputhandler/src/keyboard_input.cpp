@@ -16,12 +16,14 @@
     N=110        for gear position Neutral
     D=100        for gear position Drive
     R=114        for gear position Reverse
-    UP=65       for gas pedal increase (acceleration)
-    DOWN=66     for gas pedal decrease (deccelration)
-    1=49        for drive mode normal (default if non selected)
-    2=50        for drive mode sport 
-    K=107       accceleration
-    L=108       decceleration
+    1=49         for drive mode normal (default if non selected)
+    2=50         for drive mode sport 
+    K=107        accceleration
+    L=108        decceleration
+    '7'=55       left blinker
+    '8'=56       hazard light
+    '9'=57       right blinker
+    '0'=48       light off
     */
 
 void keyboardInput::keyReader(database_type::Database &_db) {
@@ -125,6 +127,3 @@ void keyboardInput::inputText() {
         << "\rD: gear position in drive \n\rR: gear position in reverse \n\rL: accelerate \n"
         << "\rK: decelerate \n\r1: drive mode normal \n\r2: drive mode sport \n\r7: Left blinker \n\r8: Hazard \n\r9: Right blinker \n\r0: Lights Off \n\r. : gracefully shutdown" << std::endl;
 }
-
-
-keyboardInput::~keyboardInput(){};
