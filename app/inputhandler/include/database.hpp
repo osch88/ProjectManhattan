@@ -18,12 +18,21 @@ enum class DriveMode {
     kSport
 };
 
+enum class Indicator {
+    kOff = 0,
+    kLeft,
+    kRight,
+    kBoth
+};
+
 struct Database {
     Ignition ignition;
     Gear gear;
     DriveMode drivemode;
     unsigned int gas;
     unsigned int RPM;
+    Indicator indicator_request;
+    Indicator indicator_status;
 };
 }  //  namespace database_type
 

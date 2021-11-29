@@ -15,6 +15,9 @@ bool WriteUserInputToCan(SocketCan &socket, database_type::Database &db, const i
     database_type::DriveMode db_drivemode = db.drivemode; 
     ConvertToCanFrame(ignition_drivemode, db_drivemode, can_data_base::drive_mode);
 
+    database_type::Indicator db_indicator = db.indicator_status; 
+    ConvertToCanFrame(ignition_drivemode, db_indicator, can_data_base::turn_indicator);
+
     database_type::Gear db_gear = db.gear; 
     CanFrame gear; 
     ConvertToCanFrame(gear, db_gear, can_data_base::gear_position);

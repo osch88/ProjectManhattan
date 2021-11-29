@@ -4,12 +4,27 @@
 #include "your_stuff.h"
 // #include "can_opener.h"
 
+
+
 void yourStuff::YouHaveJustRecievedACANFrame(const canfd_frame * const _frame) {
-    
+    static _icons icons;// = {0,0,0,0,0,0,0,0,0,0,0,0};
+    /*icons.hazard=0;
+    icons.left_blinker=0;
+    icons.right_blinker=0;
+    icons.abs=0;
+    icons.battery=0;
+    icons.doors_open=0;
+    icons.engine_check=0;
+    icons.hand_break=0;
+    icons.high_beam=0;
+    icons.oil_check=0;
+    icons.seat_belt=0;
+    icons._reserved_pad=0;*/
     // double us_rpm;
 
-    switch (_frame->can_id) {   
-        case 4: {
+    switch (static_cast<int>(_frame->can_id)) {
+        case 4: 
+            {
             // from CAN bus
             uint16_t rpm = *((uint16_t*)(_frame->data));
             uint8_t speed = *((uint8_t*)(_frame->data+2));
@@ -34,7 +49,34 @@ void yourStuff::YouHaveJustRecievedACANFrame(const canfd_frame * const _frame) {
             this->InstrumentCluster.setFuelGauges(125);
             this->InstrumentCluster.setTemperatureGauges(150);
             this->InstrumentCluster.setOilTemperatureGauges(150);
-        } break;
+            
+            break;
+            }
+        case 1: 
+            if (_frame->data[2] == 0) {
+                icons.right_blinker=0;
+                icons.left_blinker=0;
+                icons.hazard=0;
+                
+            } else if (_frame->data[2] == 1){
+                icons.right_blinker=0;
+                icons.left_blinker=1;
+                icons.hazard=0;
+                
+            } else if (_frame->data[2] == 2){
+                icons.right_blinker=1;
+                icons.left_blinker=0;
+                icons.hazard=0;
+               
+            } else if (_frame->data[2] == 3){
+                icons.right_blinker=0;
+                icons.left_blinker=0;
+                icons.hazard=1;
+                
+            }
+            InstrumentCluster.setIcon(&icons);
+            break;
+        
         default:
             break;
     }
