@@ -98,6 +98,22 @@ void keyboardInput::switchCaseInput(database_type::Database &_db, const int &_in
         system("stty cooked");
         exit(0);
         break;
+    case 55:
+        std::cout << "Left blinker was pressed" << std::endl;
+        _db.indicator_request = database_type::Indicator::kLeft;
+        break;
+    case 56:
+        std::cout << "Hazard was pressed" << std::endl;
+        _db.indicator_request = database_type::Indicator::kBoth;
+        break;
+    case 57:
+        std::cout << "Right blinker was pressed" << std::endl;
+        _db.indicator_request = database_type::Indicator::kRight;
+        break;
+    case 48:
+        std::cout << "Light Off Request was pressed" << std::endl;
+        _db.indicator_request = database_type::Indicator::kOff;
+        break;
     default:
         std::cout << "Please press a valid button, see manual for input" << std::endl;
         break;
@@ -107,7 +123,7 @@ void keyboardInput::inputText() {
     std::cout << "Keyboard inputs: " << std::endl;
     std::cout << "\rS: start \n \rQ: stop \n\rP: gear position in park \n\rN: gear position neutral \n"
         << "\rD: gear position in drive \n\rR: gear position in reverse \n\rL: accelerate \n"
-        << "\rK: decelerate \n\r1: drive mode normal \n\r2: drive mode sport \n\r. : gracefully shutdown" << std::endl;
+        << "\rK: decelerate \n\r1: drive mode normal \n\r2: drive mode sport \n\r7: Left blinker \n\r8: Hazard \n\r9: Right blinker \n\r0: Lights Off \n\r. : gracefully shutdown" << std::endl;
 }
 
 

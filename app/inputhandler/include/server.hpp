@@ -7,6 +7,7 @@
 #include <shared_mutex>
 #include "keyboard_input.hpp"
 #include "socketcan.hpp"
+#include "turn_indicator.hpp"
 
 class Server {
     private:
@@ -15,6 +16,7 @@ class Server {
         database_type::Database data_;
         SocketCan socket_can_;
         keyboardInput key_board_;
+        TurnIndicator turn_indicator_;
         mutable std::shared_timed_mutex mutex_;
 
     public:

@@ -90,6 +90,20 @@ namespace can_data_base{
         const uint8_t position = 4;
     };
     constexpr struct GearNumber gear_number;
+
+    struct TurnIndicator{
+        const uint32_t frame_id = 1;
+        const uint8_t frame_length = 3;
+        const uint8_t data_length = 1;
+        const uint8_t position = 2;
+        /* Data interpretation: 
+         * 0 = Off
+         * 1 = Left
+         * 2 = Right
+         * 3 = Both Left and Right
+        */
+    };
+    constexpr struct TurnIndicator turn_indicator;
 }
 
 #endif

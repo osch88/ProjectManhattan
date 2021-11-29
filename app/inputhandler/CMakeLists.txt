@@ -10,7 +10,8 @@ set(EXECUTABLE_OUTPUT_PATH "../../")
 add_executable(inputhandler
     main.cpp
     src/server.cpp
-    src/keyboard_input.cpp)
+    src/keyboard_input.cpp
+    src/turn_indicator.cpp)
 set_target_properties(
     inputhandler 
     PROPERTIES 

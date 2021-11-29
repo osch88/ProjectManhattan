@@ -12,7 +12,7 @@ bool HalMonitor::ReadFromCan(SocketCan &socket_can) {
     bool return_value = true;
     CanFrame frame;
     if (socket_can.ReadFromCan(frame) == SocketCanStatus::kStatusOk) {
-        if (frame.id == (can_data_base::start_button.frame_id or can_data_base::drive_mode.frame_id)) { //TODO: use can database to get the corresponding can ids.
+        if (frame.id == (can_data_base::start_button.frame_id or can_data_base::drive_mode.frame_id)) {
             UpdateDataForStartButton(frame);
             UpdateDataForDriveMode(frame);
         } else if (frame.id == can_data_base::pedal_position.frame_id) {
