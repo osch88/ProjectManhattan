@@ -48,6 +48,30 @@
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b17c834_5ea181d5",
+        "filename": "app/inputhandler/src/server.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1019609
+      },
+      "writtenOn": "2021-11-29T15:15:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ae65e20_8e0edfd8",
+      "range": {
+        "startLine": 46,
+        "startChar": 28,
+        "endLine": 46,
+        "endChar": 43
+      },
+      "revId": "3aed9c0653b55a2289f4b7593bcc7b596812b85f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "06f23914_b85caffb",
