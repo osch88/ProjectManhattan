@@ -18,12 +18,14 @@ class Server {
         keyboardInput key_board_;
         TurnIndicator turn_indicator_;
         mutable std::shared_timed_mutex mutex_;
+        std::thread t1_;
 
     public:
         Server();
         void Run();
         void KeyBoard();
         void CanWriter();
+        ~Server();
 };
 
 #endif

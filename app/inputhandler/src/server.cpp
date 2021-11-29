@@ -55,3 +55,6 @@ void Server::CanWriter() {
         std::this_thread::sleep_for(std::chrono::milliseconds(1));
     }
 }
+Server::~Server(){
+    t1_.join();
+}
