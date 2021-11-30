@@ -1,7 +1,7 @@
 #include "socketcan.hpp"
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <cstring>
 #include <unistd.h>
 #include <net/if.h>
 #include <sys/ioctl.h>
@@ -15,8 +15,8 @@ SocketCanStatus SocketCan::Open(const std::string &can_interface, const int32_t 
     /* open socket */
     if ((m_socket_ = socket(PF_CAN, SOCK_RAW, CAN_RAW)) < 0) 
     {
-        perror("socket");
-        return kStatusSocketCreateError;
+        std::cerr << "socket create error\n";
+        return SocketCanStatus::kStatusSocketCreateError;
     }
     struct sockaddr_can addr;
     struct ifreq ifr;
@@ -24,8 +24,8 @@ SocketCanStatus SocketCan::Open(const std::string &can_interface, const int32_t 
     ifr.ifr_name[IFNAMSIZ - 1] = '\0';
     ifr.ifr_ifindex = if_nametoindex(ifr.ifr_name);
     if (!ifr.ifr_ifindex) {
-        perror("if_nametoindex");
-        return kStatusInterfaceNameToIdxError;
+        std::cerr << "if_nametoindex\n";
+        return SocketCanStatus::kStatusInterfaceNameToIdxError;
     }
     addr.can_family = AF_CAN;
     addr.can_ifindex = ifr.ifr_ifindex;
@@ -34,10 +34,10 @@ SocketCanStatus SocketCan::Open(const std::string &can_interface, const int32_t 
     time_value.tv_usec = read_timeout_ms * 1000;
     setsockopt(m_socket_, SOL_SOCKET, SO_RCVTIMEO, (const char*)&time_value,sizeof(struct timeval));
     if (bind(m_socket_, (struct sockaddr *)&addr, sizeof(addr)) < 0) {
-        perror("Error in socket bind");
-        return kStatusBindError;
+        std::cerr << "Error in socket bind\n";
+        return SocketCanStatus::kStatusBindError;
     }
-    return kStatusOk;
+    return SocketCanStatus::kStatusOk;
 }
 
 SocketCanStatus SocketCan::WriteToCan(const CanFrame &msg){
@@ -50,10 +50,10 @@ SocketCanStatus SocketCan::WriteToCan(const CanFrame &msg){
     int number_of_bytes = ::write(m_socket_, &frame, frame_size);
     //std::cout << "framesize: " << frame_size << " return from readfunc: " << number_of_bytes << std::endl;
     if (number_of_bytes != frame_size) {
-        perror("write error, written bytes not as expected");
-        return kStatusWriteError;
+        std::cerr << "write error, written bytes not as expected\n";
+        return SocketCanStatus::kStatusWriteError;
     }
-    return kStatusOk;
+    return SocketCanStatus::kStatusOk;
 }
 
 SocketCanStatus SocketCan::ReadFromCan(CanFrame &msg){
@@ -61,15 +61,15 @@ SocketCanStatus SocketCan::ReadFromCan(CanFrame &msg){
     auto frame_size = sizeof(frame);
     auto number_of_bytes = ::read(m_socket_, &frame, frame_size);
     if (number_of_bytes == 0 or number_of_bytes == -1){
-        return kNothingToRead;
+        return SocketCanStatus::kNothingToRead;
     } else if (number_of_bytes != frame_size){
-        perror("Can read error or incomplete CAN frame");
-        return kStatusReadError;
+        std::cerr << "Can read error or incomplete CAN frame\n";
+        return SocketCanStatus::kStatusReadError;
     }
     msg.id = frame.can_id;
     msg.len = frame.can_dlc;
     memcpy(msg.data, frame.data, frame.can_dlc);
-    return kStatusOk;
+    return SocketCanStatus::kStatusOk;
 }
 
 SocketCan::~SocketCan(){

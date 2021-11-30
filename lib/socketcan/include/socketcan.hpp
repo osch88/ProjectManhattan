@@ -11,7 +11,7 @@ struct CanFrame{
     uint8_t data[8];
 };
 
-enum SocketCanStatus{
+enum class SocketCanStatus{
     kStatusOk = 0,
     kStatusSocketCreateError,
     kStatusInterfaceNameToIdxError,
