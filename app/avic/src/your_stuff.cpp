@@ -7,7 +7,7 @@
 
 
 void yourStuff::YouHaveJustRecievedACANFrame(const canfd_frame * const _frame) {
-    static _icons icons;// = {0,0,0,0,0,0,0,0,0,0,0,0};
+    static _icons icons = {0,0,0,0,0,0,0,0,0,0,0,0};
     /*icons.hazard=0;
     icons.left_blinker=0;
     icons.right_blinker=0;
@@ -53,30 +53,33 @@ void yourStuff::YouHaveJustRecievedACANFrame(const canfd_frame * const _frame) {
             break;
             }
         case 1: 
+            static bool previous_hazard = false;
             if (_frame->data[2] == 0) {
                 icons.right_blinker=0;
                 icons.left_blinker=0;
                 icons.hazard=0;
-                
+                previous_hazard=false;
+                this->InstrumentCluster.setIcon(&icons);
             } else if (_frame->data[2] == 1){
                 icons.right_blinker=0;
                 icons.left_blinker=1;
                 icons.hazard=0;
-                
+                previous_hazard=false;
+                this->InstrumentCluster.setIcon(&icons);
             } else if (_frame->data[2] == 2){
                 icons.right_blinker=1;
                 icons.left_blinker=0;
                 icons.hazard=0;
-               
-            } else if (_frame->data[2] == 3){
+                previous_hazard=false;
+                this->InstrumentCluster.setIcon(&icons);
+            } else if (_frame->data[2] == 3 && previous_hazard == false){
                 icons.right_blinker=0;
                 icons.left_blinker=0;
                 icons.hazard=1;
-                
+                previous_hazard=true;
+                this->InstrumentCluster.setIcon(&icons);
             }
-            InstrumentCluster.setIcon(&icons);
             break;
-        
         default:
             break;
     }
