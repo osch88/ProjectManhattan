@@ -45,7 +45,7 @@ void yourStuff::YouHaveJustRecievedACANFrame(const canfd_frame * const _frame) {
             this->InstrumentCluster.setGearPindle_int(gearPindle);
             
             // default values seperated from CAN
-            this->InstrumentCluster.ignite(1);
+            
             this->InstrumentCluster.setFuelGauges(125);
             this->InstrumentCluster.setTemperatureGauges(150);
             this->InstrumentCluster.setOilTemperatureGauges(150);
@@ -53,6 +53,7 @@ void yourStuff::YouHaveJustRecievedACANFrame(const canfd_frame * const _frame) {
             break;
             }
         case 1: 
+            {
             static bool previous_hazard = false;
             if (_frame->data[2] == 0) {
                 icons.right_blinker=0;
@@ -79,7 +80,28 @@ void yourStuff::YouHaveJustRecievedACANFrame(const canfd_frame * const _frame) {
                 previous_hazard=true;
                 this->InstrumentCluster.setIcon(&icons);
             }
+
+            if (_frame->data[0]==1){
+                this->InstrumentCluster.ignite(1);
+            } else {
+                this->InstrumentCluster.ignite(0);
+            }
+            /*
+            static bool start = false;
+            double rpm =0;
+            if ((!start) && (_frame->data[0] == 1)) {
+                for (int i=0; i<90; i++) {
+                    rpm +=100;
+                    this->InstrumentCluster.setRPM(rpm);
+                }
+                for (int i=0; i<90; i++) {
+                    rpm -=100;
+                    this->InstrumentCluster.setRPM(rpm);
+                }
+                
+            }*/
             break;
+            }
         default:
             break;
     }
