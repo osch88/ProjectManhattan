@@ -9,8 +9,7 @@ include_directories(include ../../lib/socketcan/include ../../lib/hal/include ..
 set(EXECUTABLE_OUTPUT_PATH "../../")
 add_executable(reo
     main.cpp
-    src/mainloop.cpp
-    src/engine.cpp)
+    src/mainloop.cpp)
 set_target_properties(
     reo 
     PROPERTIES 

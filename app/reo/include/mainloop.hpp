@@ -17,7 +17,7 @@ class MainLoop{
   reo_type::Database data_;
   SocketCan socket_can_;
   HalMonitor hal_monitor_;
-  Engine engine;
+  Engine<v60_t> engine;
   // Threads
   mutable std::shared_timed_mutex mutex_;
 
