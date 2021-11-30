@@ -1,4 +1,3 @@
-//#include "engine.hpp"
 
 template <typename VehicleCharacteristics>
 void Engine<VehicleCharacteristics>::SetEngineStaus(const reo_type::Database &_input){
@@ -21,10 +20,15 @@ void Engine<VehicleCharacteristics>::UpdateGear(const reo_type::Database &_input
     }    
     else if (engine_status_ == reo_type::EngineStatus::kOn && _input.gear == reo_type::Gear::kDrive){
         gear_ = reo_type::Gear::kDrive;
+        //gear_number_ = 1;
     }
     else if (engine_status_ == reo_type::EngineStatus::kOn && _input.gear == reo_type::Gear::kReverse){
         gear_ = reo_type::Gear::kReverse;
         gear_number_ = 9;
+    }
+    else if (engine_status_ == reo_type::EngineStatus::kOn && _input.gear == reo_type::Gear::kNeutral){
+        gear_ = reo_type::Gear::kNeutral;
+        gear_number_ = 0;
     }
     else{} // do nothing if engine is off and any other gear than park is requested?
 }
@@ -38,7 +42,7 @@ void Engine<VehicleCharacteristics>::UpdateRpm(const reo_type::Database &_input)
         rpm_ = vc.MIN_RPM;
     }
 
-    else if (engine_status_ == reo_type::EngineStatus::kOn && gear_ != reo_type::Gear::kPark){
+    else if (engine_status_ == reo_type::EngineStatus::kOn && (gear_ == reo_type::Gear::kDrive || gear_ == reo_type::Gear::kReverse)){
         static const double pi = 3.14;
         rpm_ = 30.0 / pi * speed_ / vc.wheel_radius_* vc.gear_ratio_[gear_number_] * vc.drive_shaft_ratio_;
 
@@ -51,14 +55,39 @@ void Engine<VehicleCharacteristics>::UpdateRpm(const reo_type::Database &_input)
         
         throttle_ = _input.gas;
     }
+    else if (engine_status_ == reo_type::EngineStatus::kOn && gear_ == reo_type::Gear::kNeutral){
+        double acceleration = (double)_input.gas - (double)throttle_;
+        const double rpm_increase = 0.05;
+        const double rpm_decrease = 1;
+        double torquemax = (*(vc.maxtorque_.lower_bound(rpm_))).second; 
+        double torque = torquemax * throttle_/100;
+        rpm_ += torque*vc.gear_ratio_[gear_number_]*acceleration + (rpm_increase * throttle_) - (!throttle_ * rpm_decrease);
+        
+        if (rpm_ < vc.MIN_RPM){
+            rpm_ = vc.MIN_RPM;
+        }
+        
+        if (rpm_ > vc.MAX_RPM){
+            rpm_ = vc.MAX_RPM - 100;
+        }
+        throttle_ = _input.gas;
+    
+    }
 }
 
 template <typename VehicleCharacteristics>
 double Engine<VehicleCharacteristics>::CalcTractionForce(){
     double torquemax = (*(vc.maxtorque_.lower_bound(rpm_))).second; 
     double torque = torquemax * throttle_/100;
-    double traction_force = (torque * vc.gear_ratio_[gear_number_] * vc.drive_shaft_ratio_ * vc.efficiency_)/vc.wheel_radius_;
+    double traction_force;
     
+    if(gear_ == reo_type::Gear::kPark || gear_ == reo_type::Gear::kNeutral){
+        traction_force = 0;
+    }
+    else {
+        traction_force = (torque * vc.gear_ratio_[gear_number_] * vc.drive_shaft_ratio_ * vc.efficiency_)/vc.wheel_radius_;
+    }
+
     return traction_force; 
 }
 
@@ -104,10 +133,11 @@ void Engine<VehicleCharacteristics>::CalcSpeed(){
 
 template <typename VehicleCharacteristics>
 void Engine<VehicleCharacteristics>::ShiftGear(){
-    if(rpm_ > 3000 && gear_number_ < 8){
+    if (gear_ == reo_type::Gear::kNeutral || gear_ == reo_type::Gear::kReverse) {}
+    else if(rpm_ > 5000 && gear_number_ < 8){
         gear_number_++;
     }
-    else if (rpm_ < 1500 && gear_number_ > 1){
+    else if (rpm_ < 2000 && gear_number_ > 1){
         gear_number_--;
     }
 }
