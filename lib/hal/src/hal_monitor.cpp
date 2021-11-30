@@ -6,12 +6,17 @@ HalMonitor::HalMonitor() {
     latest_received_data_.gas = 0;
     latest_received_data_.gear = reo_type::Gear::kPark;
     latest_received_data_.ignition = reo_type::Ignition::kStop;
+    
+    if (socket_can_.Open(canName) != kStatusOk) {
+        std::cout << "No socket could be open" << std::endl;
+        exit -1;
+    }
 }
 
-bool HalMonitor::ReadFromCan(SocketCan &socket_can) {
+bool HalMonitor::ReadFromCan() {
     bool return_value = true;
     CanFrame frame;
-    if (socket_can.ReadFromCan(frame) == SocketCanStatus::kStatusOk) {
+    if (socket_can_.ReadFromCan(frame) == SocketCanStatus::kStatusOk) {
         if (frame.id == (can_data_base::start_button.frame_id or can_data_base::drive_mode.frame_id)) {
             UpdateDataForStartButton(frame);
             UpdateDataForDriveMode(frame);
@@ -70,4 +75,28 @@ void HalMonitor::UpdateDataForDriveMode(const CanFrame &frame){
 
 void HalMonitor::GetCanData(reo_type::Database &data) {
     data = latest_received_data_;
+}
+
+bool HalMonitor::WriteCanFrameEmulator(reo_type::Database &db, const int &msdelay){
+    bool ret = true;
+    unsigned int db_rpm = db.rpm;
+    CanFrame emulator;
+    ConvertToCanFrame(emulator, db_rpm, can_data_base::rpm);
+
+    unsigned int db_speed = db.speed;
+    ConvertToCanFrame(emulator, db_speed, can_data_base::speed);
+
+    reo_type::Gear db_gear_pindle = db.gear;
+    ConvertToCanFrame(emulator, db_gear_pindle, can_data_base::gear_pindle);
+
+    unsigned int db_gear_number = db.gear_number;
+    ConvertToCanFrame(emulator, db_gear_number, can_data_base::gear_number);
+    
+    auto write_emulator_status = socket_can_.WriteToCan(emulator);
+  
+    if (write_emulator_status != kStatusOk || write_emulator_status != kStatusOk){
+        std::cout << "Something went wrong on socket write"  << std::endl;
+        ret = false;
+    }
+    return ret;
 }

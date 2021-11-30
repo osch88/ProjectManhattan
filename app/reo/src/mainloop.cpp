@@ -7,7 +7,7 @@
 
 void MainLoop::hal() {
     while(true) {
-        if (hal_monitor_.ReadFromCan(socket_can_)) {
+        if (hal_monitor_.ReadFromCan()) {
             std::unique_lock<std::shared_timed_mutex> lock(mutex_);
             hal_monitor_.GetCanData(data_);
         }
@@ -36,18 +36,14 @@ void MainLoop::canSend() {
         }
         {
             std::shared_lock<std::shared_timed_mutex> lock(mutex_);
-            write_status = WriteCanFrameEmulator(socket_can_, data_, DELAY);
+            write_status = hal_monitor_.WriteCanFrameEmulator(data_, DELAY);
         }
         std::this_thread::sleep_for(std::chrono::microseconds(500));
     }
 }
 
 void MainLoop::run() {
-    if (socket_can_.Open(canName) == kStatusOk) {
-        std::thread t1_(&MainLoop::hal, this);
-        std::thread t2_(&MainLoop::emulator, this);
-        canSend();
-    } else {
-        std::cout << "No socket available" << std::endl;
-    }
+    std::thread t1_(&MainLoop::hal, this);
+    std::thread t2_(&MainLoop::emulator, this);
+    canSend();
 };

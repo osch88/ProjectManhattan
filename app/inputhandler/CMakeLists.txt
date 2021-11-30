@@ -19,4 +19,4 @@ set_target_properties(
         SUFFIX ".out"
     )
 
-target_link_libraries(${PROJECT_NAME} PUBLIC socketcan writecan pthread)
+target_link_libraries(${PROJECT_NAME} PUBLIC socketcan pthread)
