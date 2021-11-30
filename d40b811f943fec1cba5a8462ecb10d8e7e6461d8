@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a274cb1_ed6db37e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1019610
+      },
+      "writtenOn": "2021-11-30T15:08:48Z",
+      "side": 1,
+      "message": "Snyggt! Det funkar alltså att anropa mutex i dettafall med this-\u003e mutex?",
+      "revId": "d40b811f943fec1cba5a8462ecb10d8e7e6461d8",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
