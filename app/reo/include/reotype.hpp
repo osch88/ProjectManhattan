@@ -29,6 +29,7 @@ struct Database {
     unsigned int rpm;
     unsigned int speed;
     unsigned int gear_number;
+    mutable std::shared_mutex mtx;
 };
 }  
 #endif  

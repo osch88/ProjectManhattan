@@ -8,7 +8,7 @@
 void MainLoop::hal() {
     while(true) {
         if (hal_monitor_.ReadFromCan()) {
-            std::unique_lock<std::shared_timed_mutex> lock(mutex_);
+            std::unique_lock<std::shared_mutex> lock(this->data_.mtx);
             hal_monitor_.GetCanData(data_);
         }
         std::this_thread::sleep_for(std::chrono::microseconds(5));
@@ -18,7 +18,7 @@ void MainLoop::hal() {
 void MainLoop::emulator() {
     while (true) {
         {
-            std::shared_lock<std::shared_timed_mutex> lock(mutex_);
+            std::shared_lock<std::shared_mutex> lock(this->data_.mtx);
             engine.set_inpVal(data_);
         }
         std::this_thread::sleep_for(std::chrono::microseconds(500));
@@ -30,11 +30,11 @@ void MainLoop::canSend() {
     int DELAY = 0;
     while (true) {
         {
-            std::unique_lock<std::shared_timed_mutex> lock(mutex_);
+            std::unique_lock<std::shared_mutex> lock(this->data_.mtx);
             engine.getData(data_);
         }
         {
-            std::shared_lock<std::shared_timed_mutex> lock(mutex_);
+            std::shared_lock<std::shared_mutex> lock(this->data_.mtx);
             write_status = hal_monitor_.WriteCanFrameEmulator(data_, DELAY);
         }
         std::this_thread::sleep_for(std::chrono::microseconds(500));

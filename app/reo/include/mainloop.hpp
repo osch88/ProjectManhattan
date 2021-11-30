@@ -14,7 +14,7 @@ class MainLoop{
   HalMonitor hal_monitor_;
   Engine<v60_t> engine;
   // Threads
-  mutable std::shared_timed_mutex mutex_;
+  //mutable std::shared_timed_mutex mutex_;
 
  public:
   void hal();
