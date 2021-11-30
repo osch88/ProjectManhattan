@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e41be5be_f59159b3",
+        "filename": "app/reo/include/engine.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1019609
+      },
+      "writtenOn": "2021-11-30T15:34:19Z",
+      "side": 1,
+      "message": "end with empty line, genral comment for files..",
+      "range": {
+        "startLine": 28,
+        "startChar": 5,
+        "endLine": 28,
+        "endChar": 23
+      },
+      "revId": "c09c4a8688bb26da8de084b41c17266d67e5f9ae",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
