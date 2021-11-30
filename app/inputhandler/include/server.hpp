@@ -8,6 +8,7 @@
 #include "keyboard_input.hpp"
 #include "socketcan.hpp"
 #include "turn_indicator.hpp"
+#include "writecan.hpp"
 
 class Server {
     private:
@@ -19,12 +20,12 @@ class Server {
         TurnIndicator turn_indicator_;
         mutable std::shared_timed_mutex mutex_;
         std::thread t1_;
-
+        bool WriteUserInputToCan(database_type::Database &db, const int &msdelay);
     public:
         Server();
-        void Run();
-        void KeyBoard();
-        void CanWriter();
+        int Run();
+        void RunKeyBoard();
+        void RunIndicatorAndCAN();
         ~Server();
 };
 

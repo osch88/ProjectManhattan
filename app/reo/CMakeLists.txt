@@ -17,4 +17,4 @@ set_target_properties(
             SUFFIX ".out"
         )
 
-target_link_libraries(${PROJECT_NAME} PUBLIC socketcan hal pthread writecan)
+target_link_libraries(${PROJECT_NAME} PUBLIC socketcan hal pthread)

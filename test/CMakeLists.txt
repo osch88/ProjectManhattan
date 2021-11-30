@@ -3,6 +3,7 @@ project(tests LANGUAGES CXX)
 
 include_directories( ../lib/hal/include
                      ../lib/socketcan/include
+                     ../lib/writecan/include
                      ../app/inputhandler/include
                      ../app/reo/include)
 
