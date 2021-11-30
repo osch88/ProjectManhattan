@@ -16,6 +16,29 @@
       "message": "Snyggt! Det funkar alltså att anropa mutex i dettafall med this-\u003e mutex?",
       "revId": "d40b811f943fec1cba5a8462ecb10d8e7e6461d8",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6504fb5f_9430187c",
+        "filename": "app/reo/include/mainloop.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1019609
+      },
+      "writtenOn": "2021-11-30T15:13:09Z",
+      "side": 1,
+      "message": "remove?",
+      "range": {
+        "startLine": 17,
+        "startChar": 1,
+        "endLine": 17,
+        "endChar": 43
+      },
+      "revId": "d40b811f943fec1cba5a8462ecb10d8e7e6461d8",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }
