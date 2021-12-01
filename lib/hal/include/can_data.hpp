@@ -55,7 +55,7 @@ namespace can_data_base{
     constexpr struct DriveMode drive_mode;
     struct Speed{
         const uint32_t frame_id = 4;
-        const uint8_t frame_length = 5;
+        const uint8_t frame_length = 8;
         const uint8_t data_length = 1;
         const uint8_t position = 2;
         /* Data interpretation: 
@@ -66,7 +66,7 @@ namespace can_data_base{
 
     struct Rpm{
         const uint32_t frame_id = 4;
-        const uint8_t frame_length = 5;
+        const uint8_t frame_length = 8;
         const uint8_t data_length = 2;
         const uint8_t position = 0;
         /* Data interpretation: 
@@ -77,7 +77,7 @@ namespace can_data_base{
 
      struct GearPindle{
         const uint32_t frame_id = 4;
-        const uint8_t frame_length = 5;
+        const uint8_t frame_length = 8;
         const uint8_t data_length = 1;
         const uint8_t position = 3;
     };
@@ -85,11 +85,35 @@ namespace can_data_base{
 
     struct GearNumber{
         const uint32_t frame_id = 4;
-        const uint8_t frame_length = 5;
+        const uint8_t frame_length = 8;
         const uint8_t data_length = 1;
         const uint8_t position = 4;
     };
     constexpr struct GearNumber gear_number;
+
+    struct Fuel{
+        const uint32_t frame_id = 4;
+        const uint8_t frame_length = 8;
+        const uint8_t data_length = 1;
+        const uint8_t position = 5;
+    };
+    constexpr struct Fuel fuel;
+
+    struct OilTemp{
+        const uint32_t frame_id = 4;
+        const uint8_t frame_length = 8;
+        const uint8_t data_length = 1;
+        const uint8_t position = 6;
+    };
+    constexpr struct OilTemp oil_temp;
+
+    struct CoolTemp{
+        const uint32_t frame_id = 4;
+        const uint8_t frame_length = 8;
+        const uint8_t data_length = 1;
+        const uint8_t position = 7;
+    };
+    constexpr struct CoolTemp cool_temp;
 
     struct TurnIndicator{
         const uint32_t frame_id = 1;

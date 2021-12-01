@@ -91,6 +91,15 @@ bool HalMonitor::WriteCanFrameEmulator(reo_type::Database &db, const int &msdela
 
     unsigned int db_gear_number = db.gear_number;
     ConvertToCanFrame(emulator, db_gear_number, can_data_base::gear_number);
+
+    unsigned int db_fuel = db.fuel;
+    ConvertToCanFrame(emulator, db_fuel, can_data_base::fuel);
+
+    unsigned int db_oil_temp = db.oil_temp;
+    ConvertToCanFrame(emulator, db_oil_temp, can_data_base::oil_temp);
+
+    unsigned int db_cool_temp = db.cooling_temp;
+    ConvertToCanFrame(emulator, db_cool_temp, can_data_base::cool_temp);
     
     auto write_emulator_status = socket_can_.WriteToCan(emulator);
   
