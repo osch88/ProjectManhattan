@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6aa47b3_4844819e",
+        "filename": "app/inputhandler/src/keyboard_input.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1019609
+      },
+      "writtenOn": "2021-12-01T19:06:34Z",
+      "side": 1,
+      "message": "kommer denna rad exekveras map på rad 127?",
+      "range": {
+        "startLine": 128,
+        "startChar": 8,
+        "endLine": 128,
+        "endChar": 30
+      },
+      "revId": "36220bbc4924191787c7e6c4ed57732e475c66ad",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1d83e68_55155be1",
+        "filename": "app/inputhandler/src/server.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1019609
+      },
+      "writtenOn": "2021-12-01T19:06:34Z",
+      "side": 1,
+      "message": "är det inte snyggare att joina i destruktorn?",
+      "range": {
+        "startLine": 26,
+        "startChar": 3,
+        "endLine": 26,
+        "endChar": 15
+      },
+      "revId": "36220bbc4924191787c7e6c4ed57732e475c66ad",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
