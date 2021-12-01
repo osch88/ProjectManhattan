@@ -13,8 +13,7 @@ class MainLoop{
   reo_type::Database data_;
   HalMonitor hal_monitor_;
   Engine<v60_t> engine;
-  // Threads
-  //mutable std::shared_timed_mutex mutex_;
+  mutable std::shared_mutex mtx_;
 
  public:
   void hal();
