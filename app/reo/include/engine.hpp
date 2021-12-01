@@ -15,7 +15,7 @@ class Engine {
     unsigned int gear_number_ = 1;
     double speed_ = 0;
     VehicleCharacteristics vc;
-    void SetEngineStaus(const reo_type::Database &_input);
+    void SetEngineStatus(const reo_type::Database &_input);
     void UpdateGear(const reo_type::Database &_input);
     void UpdateRpm(const reo_type::Database &_input);
     void ShiftGear();

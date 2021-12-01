@@ -12,7 +12,7 @@ Server::Server() {
 
 int Server::Run() {
     int return_value = 0;
-    if (socket_can_.Open(CAN_NAME) == kStatusOk){
+    if (socket_can_.Open(CAN_NAME) == SocketCanStatus::kStatusOk){
         std::thread t1_(&Server::RunKeyBoard, this);
         RunIndicatorAndCAN();
     } else {
@@ -84,16 +84,16 @@ bool Server::WriteUserInputToCan(database_type::Database &db, const int &msdelay
     std::this_thread::sleep_for(std::chrono::milliseconds(msdelay));
     auto write_gas_status = socket_can_.WriteToCan(gas);
     
-    if (write_ignition_status != kStatusOk){
-        std::cout << "Something went wrong on socket write for ignition, error code: "<< write_ignition_status << std::endl;
+    if (write_ignition_status != SocketCanStatus::kStatusOk){
+        std::cout << "Something went wrong on socket write for ignition, error code: "<< static_cast<int>(write_ignition_status) << std::endl;
         ret = false;
     }
-    else if(write_gear_status != kStatusOk){
-        std::cout << "Something went wrong on socket write for gear, error code : " << write_gear_status << std::endl;
+    else if(write_gear_status != SocketCanStatus::kStatusOk){
+        std::cout << "Something went wrong on socket write for gear, error code : " << static_cast<int>(write_gear_status) << std::endl;
         ret = false;
     }
-    else if(write_gas_status != kStatusOk){
-        std::cout << "Something went wrong on socket write for gas, error code : " << write_gas_status  << std::endl;
+    else if(write_gas_status != SocketCanStatus::kStatusOk){
+        std::cout << "Something went wrong on socket write for gas, error code : " << static_cast<int>(write_gas_status)  << std::endl;
         ret = false;
     }
     return ret; 

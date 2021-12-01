@@ -7,7 +7,7 @@ HalMonitor::HalMonitor() {
     latest_received_data_.gear = reo_type::Gear::kPark;
     latest_received_data_.ignition = reo_type::Ignition::kStop;
     
-    if (socket_can_.Open(canName) != kStatusOk) {
+    if (socket_can_.Open(canName) != SocketCanStatus::kStatusOk) {
         std::cout << "No socket could be open" << std::endl;
         exit -1;
     }
@@ -94,7 +94,7 @@ bool HalMonitor::WriteCanFrameEmulator(reo_type::Database &db, const int &msdela
     
     auto write_emulator_status = socket_can_.WriteToCan(emulator);
   
-    if (write_emulator_status != kStatusOk || write_emulator_status != kStatusOk){
+    if (write_emulator_status != SocketCanStatus::kStatusOk || write_emulator_status != SocketCanStatus::kStatusOk){
         std::cout << "Something went wrong on socket write"  << std::endl;
         ret = false;
     }
