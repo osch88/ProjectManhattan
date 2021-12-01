@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4801bef9_1d162d1b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1019609
+      },
+      "writtenOn": "2021-12-01T15:48:20Z",
+      "side": 1,
+      "message": "Granska gärna igen..",
+      "revId": "9005dd181c85893996b407ad87de1e1e4a75e699",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
