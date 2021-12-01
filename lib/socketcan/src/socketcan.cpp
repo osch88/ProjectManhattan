@@ -1,5 +1,4 @@
 #include "socketcan.hpp"
-#include <stdio.h>
 #include <stdlib.h>
 #include <cstring>
 #include <unistd.h>
@@ -8,6 +7,7 @@
 #include <sys/socket.h>
 #include <iostream>
 #include <linux/can/raw.h>
+#include <algorithm>
 
 SocketCan::SocketCan(){}
 
@@ -45,7 +45,7 @@ SocketCanStatus SocketCan::WriteToCan(const CanFrame &msg){
     memset(&frame, 0, sizeof(frame));
     frame.can_id = msg.id;
     frame.can_dlc = msg.len;
-    memcpy(frame.data, msg.data, msg.len);
+    std::copy_n(msg.data, msg.len, frame.data);  //  src - size - dest
     int frame_size = sizeof(frame);
     int number_of_bytes = ::write(m_socket_, &frame, frame_size);
     //std::cout << "framesize: " << frame_size << " return from readfunc: " << number_of_bytes << std::endl;
@@ -68,7 +68,8 @@ SocketCanStatus SocketCan::ReadFromCan(CanFrame &msg){
     }
     msg.id = frame.can_id;
     msg.len = frame.can_dlc;
-    memcpy(msg.data, frame.data, frame.can_dlc);
+    std::copy_n(frame.data, frame.can_dlc, msg.data);
+    std::cout << frame.data << std::endl;
     return SocketCanStatus::kStatusOk;
 }
 
