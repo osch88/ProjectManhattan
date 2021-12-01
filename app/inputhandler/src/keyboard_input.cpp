@@ -108,6 +108,15 @@ void keyboardInput::switchCaseInput(database_type::Database &_db, const int &_in
             _db.high_beam = database_type::HighBeam::kHighBeamOff;
         }
         break;
+    case 120:
+        if (_db.brake == database_type::Brake::kHandBrakeOff) {
+            std::cout << "Brake On" << std::endl;
+            _db.brake = database_type::Brake::kHandBrakeOn;
+        } else if (_db.brake == database_type::Brake::kHandBrakeOn) {
+            std::cout << "Brake Off" << std::endl;
+            _db.brake = database_type::Brake::kHandBrakeOff;
+        }
+        break;
     case 46:
         this->running = false;
         for (auto i = 3; i > 0; i--) {
@@ -143,5 +152,5 @@ void keyboardInput::inputText() {
     std::cout << "Keyboard inputs: " << std::endl;
     std::cout << "\rS: start \n \rQ: stop \n\rP: gear position in park \n\rN: gear position neutral \n"
         << "\rD: gear position in drive \n\rR: gear position in reverse \n\rL: accelerate \n"
-        << "\rK: decelerate \n\r1: drive mode normal \n\r2: drive mode sport \n\r7: Left blinker \n\r8: Hazard \n\r9: Right blinker \n\r0: Lights Off \n\rb: Belt On/Off \n\rh: High Beam On/Off  \n\r. : gracefully shutdown" << std::endl;
+        << "\rK: decelerate \n\r1: drive mode normal \n\r2: drive mode sport \n\r7: Left blinker \n\r8: Hazard \n\r9: Right blinker \n\r0: Lights Off \n\rb: Belt On/Off \n\rx: Brake On/Off \n\rh: High Beam On/Off  \n\r. : gracefully shutdown" << std::endl;
 }

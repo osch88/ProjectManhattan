@@ -35,6 +35,11 @@ enum class HighBeam {
     kHighBeamOn
 };
 
+enum class Brake {
+    kHandBrakeOff = 0,
+    kHandBrakeOn
+};
+
 struct Database {
     Ignition ignition;
     Gear gear;
@@ -45,6 +50,7 @@ struct Database {
     Indicator indicator_status;
     SeatBelt seat_belt;
     HighBeam high_beam;
+    Brake brake;
 };
 }  //  namespace database_type
 
