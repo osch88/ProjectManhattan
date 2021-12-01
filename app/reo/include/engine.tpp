@@ -10,6 +10,16 @@ void Engine<VehicleCharacteristics>::SetEngineStatus(const reo_type::Database &_
 }
 
 template <typename VehicleCharacteristics>
+void Engine<VehicleCharacteristics>::UpdateDriveMode(const reo_type::Database &_input){
+    if(_input.drive_mode == reo_type::DriveMode::kSport){
+        drive_mode_ = reo_type::DriveMode::kSport;
+    }
+    else{
+        drive_mode_ = reo_type::DriveMode::kEco;
+    }
+}
+
+template <typename VehicleCharacteristics>
 void Engine<VehicleCharacteristics>::UpdateGear(const reo_type::Database &_input){
     
     if (engine_status_ == reo_type::EngineStatus::kOff){
@@ -133,11 +143,12 @@ void Engine<VehicleCharacteristics>::CalcSpeed(){
 
 template <typename VehicleCharacteristics>
 void Engine<VehicleCharacteristics>::ShiftGear(){
+    unsigned int gear_shift_mode = static_cast<unsigned int>(drive_mode_);
     if (gear_ == reo_type::Gear::kNeutral || gear_ == reo_type::Gear::kReverse || gear_ == reo_type::Gear::kPark) {}
-    else if(rpm_ > vc.gear_shift_up_ && gear_number_ < vc.number_of_gears_){
+    else if(rpm_ > vc.gear_shift_up_[gear_shift_mode] && gear_number_ < vc.number_of_gears_){
         gear_number_++;
     }
-    else if (rpm_ < vc.gear_shift_down_ && gear_number_ > 1){
+    else if (rpm_ < vc.gear_shift_down_[gear_shift_mode] && gear_number_ > 1){
         gear_number_--;
     }
     else if (gear_ == reo_type::Gear::kDrive && gear_number_ == 0){
@@ -148,6 +159,7 @@ void Engine<VehicleCharacteristics>::ShiftGear(){
 template <typename VehicleCharacteristics>
 void Engine<VehicleCharacteristics>::set_inpVal(const reo_type::Database &_input) {
     SetEngineStatus(_input);
+    UpdateDriveMode(_input);
     UpdateGear(_input);
     CalcSpeed();
     UpdateRpm(_input);
@@ -160,10 +172,12 @@ void Engine<VehicleCharacteristics>::getData(reo_type::Database &_input) {
     _input.rpm = rpm_;
     _input.speed = speed_ * 3.6;
     _input.gear_number = gear_number_;
-    _input.gear = gear_;
+    _input.gear_pindle = gear_;
     _input.fuel = fuel_;
     _input.oil_temp = oil_temp_;
     _input.cooling_temp = cool_temp_;
+    _input.engine_status = engine_status_;
+    _input.drive_mode_status = drive_mode_;
 }
 
 template <typename VehicleCharacteristics>

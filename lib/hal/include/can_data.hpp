@@ -164,6 +164,22 @@ namespace can_data_base{
         */
     };
     constexpr struct Brake brake;
+
+    struct EngineStatus{
+        const uint32_t frame_id = 5;
+        const uint8_t frame_length = 2;
+        const uint8_t data_length = 1;
+        const uint8_t position = 0;
+    };
+    constexpr struct EngineStatus engine_status;
+
+    struct DriveModeStatus{
+        const uint32_t frame_id = 5;
+        const uint8_t frame_length = 2;
+        const uint8_t data_length = 1;
+        const uint8_t position = 1;
+    };
+    constexpr struct DriveModeStatus drive_mode_status;    
 }
 
 #endif

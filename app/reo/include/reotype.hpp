@@ -23,7 +23,9 @@ enum class EngineStatus{
 struct Database {
     Ignition ignition;
     Gear gear;
+    Gear gear_pindle;
     DriveMode drive_mode;
+    DriveMode drive_mode_status;
     EngineStatus engine_status;
     unsigned int gas;
     unsigned int rpm;
