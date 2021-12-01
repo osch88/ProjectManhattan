@@ -69,7 +69,6 @@ SocketCanStatus SocketCan::ReadFromCan(CanFrame &msg){
     msg.id = frame.can_id;
     msg.len = frame.can_dlc;
     std::copy_n(frame.data, frame.can_dlc, msg.data);
-    std::cout << frame.data << std::endl;
     return SocketCanStatus::kStatusOk;
 }
 
