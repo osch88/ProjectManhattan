@@ -34,15 +34,24 @@ void yourStuff::YouHaveJustRecievedACANFrame(const canfd_frame * const _frame) {
             if(gearPindle == 3) {
                 gearPindle = 2;
                 gearNumber = 1;
+                icons.hand_break = 0;
             }
             else if(gearPindle == 2) {
                 gearPindle = 3;
+                icons.hand_break = 0;
+            }
+            else if(gearPindle == 0){
+                icons.hand_break = 1;
+            }
+            else{
+                icons.hand_break = 0;
             }
 
             this->InstrumentCluster.setRPM(rpm);
             this->InstrumentCluster.setSpeed(speed);
             this->InstrumentCluster.setGear(gearNumber);
             this->InstrumentCluster.setGearPindle_int(gearPindle);
+            this->InstrumentCluster.setIcon(&icons);
             
             // default values seperated from CAN
             

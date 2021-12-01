@@ -16,7 +16,7 @@ void Engine<VehicleCharacteristics>::UpdateGear(const reo_type::Database &_input
         gear_ = reo_type::Gear::kPark;
         gear_number_ = 0;
     }
-    else if (engine_status_ == reo_type::EngineStatus::kOn && _input.gear == reo_type::Gear::kPark && rpm_ == 0){
+    else if (engine_status_ == reo_type::EngineStatus::kOn && _input.gear == reo_type::Gear::kPark && speed_ <0.5f){
         gear_ = reo_type::Gear::kPark;
         gear_number_ = 0;
     }    
