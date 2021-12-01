@@ -2,17 +2,17 @@
 template <typename VehicleCharacteristics>
 void Engine<VehicleCharacteristics>::SetEngineStatus(const reo_type::Database &_input){
     if (_input.ignition == reo_type::Ignition::kStop){
-        engine_status_ = reo_type::EngineStatus::kOff; // Behöver vi kolla gear? Får vi gå till off om gear = drive?
+        engine_status_ = reo_type::EngineStatus::kOff;
     }
-    else if (_input.ignition == reo_type::Ignition::kStart){
+    else if (_input.ignition == reo_type::Ignition::kStart && _input.gear == reo_type::Gear::kPark){
         engine_status_ = reo_type::EngineStatus::kOn;
     }
 }
 
 template <typename VehicleCharacteristics>
 void Engine<VehicleCharacteristics>::UpdateGear(const reo_type::Database &_input){
-    //När får vi gå till de olika? Får vi gå till Park om rpm > 0? ska vi printa något om man försöker göra något man inte får? 
-    if (engine_status_ == reo_type::EngineStatus::kOff /*&& _input.gear == reo_type::Gear::kPark*/){
+    
+    if (engine_status_ == reo_type::EngineStatus::kOff){
         gear_ = reo_type::Gear::kPark;
         gear_number_ = 0;
     }
@@ -22,7 +22,6 @@ void Engine<VehicleCharacteristics>::UpdateGear(const reo_type::Database &_input
     }    
     else if (engine_status_ == reo_type::EngineStatus::kOn && _input.gear == reo_type::Gear::kDrive){
         gear_ = reo_type::Gear::kDrive;
-        //gear_number_ = 1;
     }
     else if (engine_status_ == reo_type::EngineStatus::kOn && _input.gear == reo_type::Gear::kReverse && speed_ < 0.5f){
         gear_ = reo_type::Gear::kReverse;
@@ -32,7 +31,7 @@ void Engine<VehicleCharacteristics>::UpdateGear(const reo_type::Database &_input
         gear_ = reo_type::Gear::kNeutral;
         gear_number_ = 0;
     }
-    else{} // do nothing if engine is off and any other gear than park is requested?
+    else{} // do nothing if engine is off and any other gear than park is requested
 }
 
 template <typename VehicleCharacteristics>
@@ -69,7 +68,6 @@ void Engine<VehicleCharacteristics>::UpdateRpm(const reo_type::Database &_input)
             rpm_ = vc.MAX_RPM - 100;
         }
         throttle_ = _input.gas;
-    
     }
 }
 
@@ -136,10 +134,10 @@ void Engine<VehicleCharacteristics>::CalcSpeed(){
 template <typename VehicleCharacteristics>
 void Engine<VehicleCharacteristics>::ShiftGear(){
     if (gear_ == reo_type::Gear::kNeutral || gear_ == reo_type::Gear::kReverse || gear_ == reo_type::Gear::kPark) {}
-    else if(rpm_ > 5000 && gear_number_ < 8){
+    else if(rpm_ > vc.gear_shift_up_ && gear_number_ < vc.number_of_gears_){
         gear_number_++;
     }
-    else if (rpm_ < 2000 && gear_number_ > 1){
+    else if (rpm_ < vc.gear_shift_down_ && gear_number_ > 1){
         gear_number_--;
     }
     else if (gear_ == reo_type::Gear::kDrive && gear_number_ == 0){
