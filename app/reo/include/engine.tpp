@@ -152,6 +152,7 @@ void Engine<VehicleCharacteristics>::set_inpVal(const reo_type::Database &_input
     CalcSpeed();
     UpdateRpm(_input);
     ShiftGear();
+    UpdateFuelAndTemp();
 }
 
 template <typename VehicleCharacteristics>
@@ -160,4 +161,28 @@ void Engine<VehicleCharacteristics>::getData(reo_type::Database &_input) {
     _input.speed = speed_ * 3.6;
     _input.gear_number = gear_number_;
     _input.gear = gear_;
+    _input.gas = fuel_;
+    _input.oil_temp = oil_temp_;
+    _input.cooling_temp = cool_temp_;
+}
+
+template <typename VehicleCharacteristics>
+void Engine<VehicleCharacteristics>::UpdateFuelAndTemp() {
+    if (engine_status_ == reo_type::EngineStatus::kOn) {
+        fuel_ -= 0.001;
+        if (oil_temp_ < 125) {
+            oil_temp_ +=0.001;
+        }
+        if (cool_temp_ < 125) {
+            cool_temp_ +=0.001;
+        }
+        
+    } else {
+        if (oil_temp_ > 0) {
+            oil_temp_ -=0.001;    
+        }
+        if (cool_temp_ > 0) {
+            cool_temp_ -=0.001;    
+        }
+    }
 }
