@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.5.1 FATAL_ERROR)
 
 #project name and supported languages
 project(project_manhattan LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 17)
 
 #set build directory
 #set(BUILD_DIR_NAME "${CMAKE_SOURCE_DIR}/build")
