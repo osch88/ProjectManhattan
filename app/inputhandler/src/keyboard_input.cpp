@@ -90,6 +90,24 @@ void keyboardInput::switchCaseInput(database_type::Database &_db, const int &_in
         std::cout << "Drive mode DYNAMIC selected" << std::endl;
         _db.drivemode = database_type::DriveMode::kSport;
         break;
+    case 98:
+        if (_db.seat_belt== database_type::SeatBelt::kNotApplied) {
+            std::cout << "Seat Belt On" << std::endl;
+            _db.seat_belt = database_type::SeatBelt::kApplied;
+        } else if (_db.seat_belt == database_type::SeatBelt::kApplied) {
+            std::cout << "Seat Belt Off" << std::endl;
+            _db.seat_belt = database_type::SeatBelt::kNotApplied;
+        }
+        break;
+    case 104:
+        if (_db.high_beam== database_type::HighBeam::kHighBeamOff) {
+            std::cout << "High Beam On" << std::endl;
+            _db.high_beam = database_type::HighBeam::kHighBeamOn;
+        } else if (_db.high_beam == database_type::HighBeam::kHighBeamOn) {
+            std::cout << "High Beam Off" << std::endl;
+            _db.high_beam = database_type::HighBeam::kHighBeamOff;
+        }
+        break;
     case 46:
         this->running = false;
         for (auto i = 3; i > 0; i--) {
@@ -125,5 +143,5 @@ void keyboardInput::inputText() {
     std::cout << "Keyboard inputs: " << std::endl;
     std::cout << "\rS: start \n \rQ: stop \n\rP: gear position in park \n\rN: gear position neutral \n"
         << "\rD: gear position in drive \n\rR: gear position in reverse \n\rL: accelerate \n"
-        << "\rK: decelerate \n\r1: drive mode normal \n\r2: drive mode sport \n\r7: Left blinker \n\r8: Hazard \n\r9: Right blinker \n\r0: Lights Off \n\r. : gracefully shutdown" << std::endl;
+        << "\rK: decelerate \n\r1: drive mode normal \n\r2: drive mode sport \n\r7: Left blinker \n\r8: Hazard \n\r9: Right blinker \n\r0: Lights Off \n\rb: Belt On/Off \n\rh: High Beam On/Off  \n\r. : gracefully shutdown" << std::endl;
 }

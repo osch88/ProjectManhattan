@@ -8,6 +8,8 @@ Server::Server() {
     data_.ignition = database_type::Ignition::kStop;
     data_.indicator_request = database_type::Indicator::kOff;
     data_.indicator_status = database_type::Indicator::kOff;
+    data_.seat_belt = database_type::SeatBelt::kNotApplied;
+    data_.high_beam = database_type::HighBeam::kHighBeamOff;
 }
 
 int Server::Run() {
@@ -30,6 +32,8 @@ void Server::RunKeyBoard() {
     temp_data.ignition = database_type::Ignition::kStop;
     temp_data.indicator_request = database_type::Indicator::kOff;
     temp_data.indicator_status = database_type::Indicator::kOff;
+    temp_data.seat_belt = database_type::SeatBelt::kNotApplied;
+    temp_data.high_beam = database_type::HighBeam::kHighBeamOff;
     while (true){
         key_board_.keyReader(temp_data);
         {
@@ -69,6 +73,12 @@ bool Server::WriteUserInputToCan(database_type::Database &db, const int &msdelay
 
     database_type::Indicator db_indicator = db.indicator_status; 
     ConvertToCanFrame(ignition_drivemode_indicator, db_indicator, can_data_base::turn_indicator);
+
+    database_type::SeatBelt db_seat_belt = db.seat_belt; 
+    ConvertToCanFrame(ignition_drivemode_indicator, db_seat_belt, can_data_base::seat_belt);
+
+    database_type::HighBeam db_high_beam = db.high_beam; 
+    ConvertToCanFrame(ignition_drivemode_indicator, db_high_beam, can_data_base::high_beam);
 
     database_type::Gear db_gear = db.gear; 
     CanFrame gear; 

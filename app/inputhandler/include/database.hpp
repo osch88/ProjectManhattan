@@ -25,6 +25,16 @@ enum class Indicator {
     kBoth
 };
 
+enum class SeatBelt {
+    kNotApplied = 0,
+    kApplied
+};
+
+enum class HighBeam {
+    kHighBeamOff = 0,
+    kHighBeamOn
+};
+
 struct Database {
     Ignition ignition;
     Gear gear;
@@ -33,6 +43,8 @@ struct Database {
     unsigned int RPM;
     Indicator indicator_request;
     Indicator indicator_status;
+    SeatBelt seat_belt;
+    HighBeam high_beam;
 };
 }  //  namespace database_type
 

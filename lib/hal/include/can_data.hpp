@@ -32,7 +32,7 @@ namespace can_data_base{
 
     struct StartButton{
         const uint32_t frame_id = 1;
-        const uint8_t frame_length = 3;
+        const uint8_t frame_length = 5;
         const uint8_t data_length = 1;
         const uint8_t position = 0;
         /* Data interpretation: 
@@ -44,7 +44,7 @@ namespace can_data_base{
 
     struct DriveMode{
         const uint32_t frame_id = 1;
-        const uint8_t frame_length = 3;
+        const uint8_t frame_length = 5;
         const uint8_t data_length = 1;
         const uint8_t position = 1;
         /* Data interpretation: 
@@ -93,7 +93,7 @@ namespace can_data_base{
 
     struct TurnIndicator{
         const uint32_t frame_id = 1;
-        const uint8_t frame_length = 3;
+        const uint8_t frame_length = 5;
         const uint8_t data_length = 1;
         const uint8_t position = 2;
         /* Data interpretation: 
@@ -104,6 +104,30 @@ namespace can_data_base{
         */
     };
     constexpr struct TurnIndicator turn_indicator;
+
+    struct SeatBelt{
+        const uint32_t frame_id = 1;
+        const uint8_t frame_length = 5;
+        const uint8_t data_length = 1;
+        const uint8_t position = 3;
+        /* Data interpretation: 
+         * 0 = SeatBeltNotApplied
+         * 1 = SeatBeltApplied
+        */
+    };
+    constexpr struct SeatBelt seat_belt;
+
+    struct HighBeam{
+        const uint32_t frame_id = 1;
+        const uint8_t frame_length = 5;
+        const uint8_t data_length = 1;
+        const uint8_t position = 4;
+        /* Data interpretation: 
+         * 0 = HighBeamOff
+         * 1 = HighBeamOn
+        */
+    };
+    constexpr struct HighBeam high_beam;
 }
 
 #endif
