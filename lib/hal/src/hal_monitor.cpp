@@ -9,7 +9,7 @@ HalMonitor::HalMonitor() {
     
     if (socket_can_.Open(canName) != SocketCanStatus::kStatusOk) {
         std::cout << "No socket could be open" << std::endl;
-        exit -1;
+        std::exit(EXIT_FAILURE);
     }
 }
 
