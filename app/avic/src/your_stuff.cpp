@@ -64,12 +64,6 @@ void yourStuff::YouHaveJustRecievedACANFrame(const canfd_frame * const _frame) {
             }
             
             this->InstrumentCluster.setIcon(&icons);
-
-            if (_frame->data[0]==1){
-                this->InstrumentCluster.ignite(1);
-            } else {
-                this->InstrumentCluster.ignite(0);
-            }
             break;
         case 4:
             {
@@ -78,7 +72,6 @@ void yourStuff::YouHaveJustRecievedACANFrame(const canfd_frame * const _frame) {
             speed = *((uint8_t*)(_frame->data+2));
             char gearPindle = _frame->data[3];
             char gearNumber = _frame->data[4];
-            uint8_t driveMode = _frame->data[5];
             // Fix for gear pindle indicator
             if (gearPindle == 3) {
                 gearPindle = 2;
@@ -92,14 +85,7 @@ void yourStuff::YouHaveJustRecievedACANFrame(const canfd_frame * const _frame) {
             } else {
                 icons.hand_break = 0;
             }
-            // Sets the drive mode
-            if (driveMode == 0) {
-                driveModeStr = "Drive mode:\t COMFORT";
-            } else if (driveMode == 1) {
-                driveModeStr = "Drive mode:\t SPORT";
-            } else {
-                driveModeStr = "...";
-            }
+            
             //double fuel = static_cast<double>(_frame->data[5]);
             uint16_t fuel = _frame->data[5];
             uint16_t oil_temp = _frame->data[6];
@@ -116,6 +102,24 @@ void yourStuff::YouHaveJustRecievedACANFrame(const canfd_frame * const _frame) {
             this->InstrumentCluster.setTemperatureGauges(cool_temp);
             }
             break;
+        case 5:
+            {
+            if (_frame->data[0]==1){
+                this->InstrumentCluster.ignite(1);
+            } else{
+                this->InstrumentCluster.ignite(0);
+            }
+            uint8_t driveMode = _frame->data[1];
+            // Sets the drive mode
+            if (driveMode == 0) {
+                driveModeStr = "Drive mode:\t COMFORT";
+            } else if (driveMode == 1) {
+                driveModeStr = "Drive mode:\t SPORT";
+            } else {
+                driveModeStr = "...";
+            }
+            break;            
+            }
             }
         default:
             break;

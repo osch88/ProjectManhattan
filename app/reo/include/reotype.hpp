@@ -20,10 +20,16 @@ enum class EngineStatus{
     kOff,
     kOn
 };
+enum class Brake {
+    kBrakeOff = 0,
+    kBrakeOn
+};
 struct Database {
     Ignition ignition;
     Gear gear;
+    Gear gear_pindle;
     DriveMode drive_mode;
+    DriveMode drive_mode_status;
     EngineStatus engine_status;
     unsigned int gas;
     unsigned int rpm;
@@ -32,6 +38,7 @@ struct Database {
     unsigned int fuel;
     unsigned int oil_temp;
     unsigned int cooling_temp;
+    Brake brake;
 };
 }  
 #endif  
