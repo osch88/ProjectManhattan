@@ -22,6 +22,9 @@ int Server::Run() {
         std::cout << "Cannot open can socket!" << std::endl;
         return_value = 1;
     }
+    
+    t1_.join();
+    
     return return_value;
 }
 
@@ -36,10 +39,10 @@ void Server::RunKeyBoard() {
     temp_data.seat_belt = database_type::SeatBelt::kNotApplied;
     temp_data.high_beam = database_type::HighBeam::kHighBeamOff;
     temp_data.brake = database_type::Brake::kHandBrakeOff;
-    while (true){
+    while (key_board_.running){
         key_board_.keyReader(temp_data);
         {
-            std::unique_lock<std::shared_timed_mutex> lock(mutex_);
+            std::unique_lock<std::shared_mutex> lock(mutex_);
             data_ = temp_data;
         }
     }
@@ -47,10 +50,10 @@ void Server::RunKeyBoard() {
         
 void Server::RunIndicatorAndCAN() {
     database_type::Indicator indicator_status = database_type::Indicator::kOff;
-    while (true){
+    while (key_board_.running){
         bool write_result = true;
         {
-            std::shared_lock<std::shared_timed_mutex> lock(mutex_);
+            std::shared_lock<std::shared_mutex> lock(mutex_);
             turn_indicator_.UpdateIndicator(data_);
             indicator_status = turn_indicator_.GetIndicatorStatus();
             data_.indicator_status = indicator_status;
@@ -115,5 +118,4 @@ bool Server::WriteUserInputToCan(database_type::Database &db, const int &msdelay
 }
 
 Server::~Server(){
-    t1_.join();
 }

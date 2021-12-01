@@ -118,7 +118,6 @@ void keyboardInput::switchCaseInput(database_type::Database &_db, const int &_in
         }
         break;
     case 46:
-        this->running = false;
         for (auto i = 3; i > 0; i--) {
             std::cout << "Gracefully shutting down in: " << i << " seconds" << std::endl;
             sleep(1);
@@ -126,6 +125,7 @@ void keyboardInput::switchCaseInput(database_type::Database &_db, const int &_in
         }
         system("stty cooked");
         exit(0);
+        this->running = false;
         break;
     case 55:
         std::cout << "Left blinker was pressed" << std::endl;
