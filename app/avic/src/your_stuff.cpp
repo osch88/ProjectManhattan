@@ -21,36 +21,50 @@ void yourStuff::YouHaveJustRecievedACANFrame(const canfd_frame * const _frame) {
     icons.seat_belt=0;
     icons._reserved_pad=0;*/
     // double us_rpm;
+    static uint8_t speed = 0;
+    
 
     switch (static_cast<int>(_frame->can_id)) {
         case 1:
             {
+            if (_frame->data[3]== 0) {
+                icons.seat_belt=1;
+            } else {
+                icons.seat_belt=0;
+            }
+
+            if (_frame->data[4]== 1) {
+                icons.high_beam=1;
+            } else {
+                icons.high_beam=0;
+            }
+
             static bool previous_hazard = false;
             if (_frame->data[2] == 0) {
                 icons.right_blinker=0;
                 icons.left_blinker=0;
                 icons.hazard=0;
                 previous_hazard=false;
-                this->InstrumentCluster.setIcon(&icons);
             } else if (_frame->data[2] == 1){
                 icons.right_blinker=0;
                 icons.left_blinker=1;
                 icons.hazard=0;
                 previous_hazard=false;
-                this->InstrumentCluster.setIcon(&icons);
             } else if (_frame->data[2] == 2){
                 icons.right_blinker=1;
                 icons.left_blinker=0;
                 icons.hazard=0;
                 previous_hazard=false;
-                this->InstrumentCluster.setIcon(&icons);
             } else if (_frame->data[2] == 3 && previous_hazard == false){
-                icons.right_blinker=0;
-                icons.left_blinker=0;
-                icons.hazard=1;
-                previous_hazard=true;
-                this->InstrumentCluster.setIcon(&icons);
+                icons.right_blinker=1;
+                icons.left_blinker=1;
+                //icons.hazard=1;
+                //previous_hazard=true;
+                //this->InstrumentCluster.setIcon(&icons);
             }
+            
+            this->InstrumentCluster.setIcon(&icons);
+
             if (_frame->data[0]==1){
                 this->InstrumentCluster.ignite(1);
             } else {
@@ -61,7 +75,7 @@ void yourStuff::YouHaveJustRecievedACANFrame(const canfd_frame * const _frame) {
             {
             // from CAN bus
             uint16_t rpm = *((uint16_t*)(_frame->data));
-            uint8_t speed = *((uint8_t*)(_frame->data+2));
+            speed = *((uint8_t*)(_frame->data+2));
             char gearPindle = _frame->data[3];
             char gearNumber = _frame->data[4];
             uint8_t driveMode = _frame->data[5];
