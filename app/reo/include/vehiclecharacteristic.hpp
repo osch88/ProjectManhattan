@@ -10,8 +10,8 @@ typedef struct V60{
     const double gear_ratio_[10] = {6, 5.25, 3.029, 1.95, 1.457, 1.221, 1, 0.809, 0.673, 4.015};
     const unsigned int number_of_gears_ = 8;
     const double drive_shaft_ratio_ = 2.955;
-    const unsigned int gear_shift_up_ = 5000;
-    const unsigned int gear_shift_down_ = 2000;
+    const unsigned int gear_shift_up_[2] = {4000, 5800};
+    const unsigned int gear_shift_down_[2] = {2000, 3500};
     const unsigned int efficiency_ = 1;
     const double wheel_radius_ = 0.3;
     const double vehicle_mass_ = 2250;

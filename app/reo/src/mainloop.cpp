@@ -28,7 +28,7 @@ void MainLoop::emulator() {
 
 void MainLoop::canSend() {
     bool write_status = true;
-    int DELAY = 0;
+    int DELAY = 1;
     while (true) {
         {
             std::unique_lock<std::shared_mutex> lock(this->mtx_);
