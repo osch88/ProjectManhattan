@@ -29,6 +29,9 @@ struct Database {
     unsigned int rpm;
     unsigned int speed;
     unsigned int gear_number;
+    unsigned int fuel;
+    unsigned int oil_temp;
+    unsigned int cooling_temp;
 };
 }  
 #endif  

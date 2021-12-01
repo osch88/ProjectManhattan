@@ -14,6 +14,9 @@ class Engine {
     unsigned int throttle_ = 0;
     unsigned int gear_number_ = 1;
     double speed_ = 0;
+    float fuel_= 200;
+    float oil_temp_ = 0;
+    float cool_temp_ = 0;
     VehicleCharacteristics vc;
     void SetEngineStatus(const reo_type::Database &_input);
     void UpdateGear(const reo_type::Database &_input);
@@ -23,6 +26,7 @@ class Engine {
     double CalcTractionForce();
     double CalcRoadForce();
     double CalcAeroForce();
+    void UpdateFuelAndTemp();
     
  public:
     Engine() = default;

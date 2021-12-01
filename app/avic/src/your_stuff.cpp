@@ -100,6 +100,10 @@ void yourStuff::YouHaveJustRecievedACANFrame(const canfd_frame * const _frame) {
             } else {
                 driveModeStr = "...";
             }
+            //double fuel = static_cast<double>(_frame->data[5]);
+            uint16_t fuel = _frame->data[5];
+            uint16_t oil_temp = _frame->data[6];
+            uint16_t cool_temp = _frame->data[7];
             // Init values
             this->InstrumentCluster.setTXT(driveModeStr);
             this->InstrumentCluster.setRPM(rpm);
@@ -107,6 +111,9 @@ void yourStuff::YouHaveJustRecievedACANFrame(const canfd_frame * const _frame) {
             this->InstrumentCluster.setGear(gearNumber);
             this->InstrumentCluster.setGearPindle_int(gearPindle);
             this->InstrumentCluster.setIcon(&icons);
+            this->InstrumentCluster.setFuelGauges(fuel);
+            this->InstrumentCluster.setOilTemperatureGauges(oil_temp);
+            this->InstrumentCluster.setTemperatureGauges(cool_temp);
             }
             break;
             }
