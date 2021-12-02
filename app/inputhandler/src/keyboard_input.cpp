@@ -26,9 +26,10 @@
     '0'=48       light off
     */
 
-void keyboardInput::keyReader(database_type::Database &_db) {
+bool keyboardInput::keyReader(database_type::Database &_db) {
     char input;
     int int_input;
+    
 
     inputText();
     system("stty raw");
@@ -39,6 +40,7 @@ void keyboardInput::keyReader(database_type::Database &_db) {
     system("clear");
     system("");
     switchCaseInput(_db, int_input);
+    return this->keyReaderRunning;
 }
 void keyboardInput::switchCaseInput(database_type::Database &_db, const int &_in) {
     switch (_in) {
@@ -118,14 +120,12 @@ void keyboardInput::switchCaseInput(database_type::Database &_db, const int &_in
         }
         break;
     case 46:
-        this->running = false;
         for (auto i = 3; i > 0; i--) {
             std::cout << "Gracefully shutting down in: " << i << " seconds" << std::endl;
             sleep(1);
             system("clear");
         }
-        system("stty cooked");
-        exit(0);
+        this->keyReaderRunning = false;
         break;
     case 55:
         std::cout << "Left blinker was pressed" << std::endl;
