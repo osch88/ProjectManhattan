@@ -104,18 +104,17 @@ void yourStuff::YouHaveJustRecievedACANFrame(const canfd_frame * const _frame) {
             break;
         case 5:
             {
+            uint8_t driveMode = _frame->data[1];
             if (_frame->data[0]==1){
                 this->InstrumentCluster.ignite(1);
+                // Sets the drive mode
+                if (driveMode == 0) {
+                    driveModeStr = "Drive mode:\t COMFORT";
+                } else if (driveMode == 1) {
+                    driveModeStr = "Drive mode:\t SPORT";
+                }
             } else{
                 this->InstrumentCluster.ignite(0);
-            }
-            uint8_t driveMode = _frame->data[1];
-            // Sets the drive mode
-            if (driveMode == 0) {
-                driveModeStr = "Drive mode:\t COMFORT";
-            } else if (driveMode == 1) {
-                driveModeStr = "Drive mode:\t SPORT";
-            } else {
                 driveModeStr = "...";
             }
             break;            
@@ -148,7 +147,7 @@ bool yourStuff::run() {
     else if (status == CANOpener::ReadStatus::NAVAL ||
              status == CANOpener::ReadStatus::ENDOF) this->Counter++;
     else   this->Counter = 0;
-    //if (this->Counter > 200) ret = false;
+    if (this->Counter > 200) ret = false;
     return ret;
 }
 
