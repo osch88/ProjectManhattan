@@ -18,15 +18,15 @@ class Server {
         SocketCan socket_can_;
         keyboardInput key_board_;
         TurnIndicator turn_indicator_;
-        mutable std::shared_timed_mutex mutex_;
+        mutable std::shared_mutex mutex_;
         std::thread t1_;
         bool WriteUserInputToCan(database_type::Database &db, const int &msdelay);
+        bool user_exit = true;
     public:
         Server();
         int Run();
         void RunKeyBoard();
         void RunIndicatorAndCAN();
-        ~Server();
 };
 
 #endif

@@ -4,10 +4,10 @@
 
 class keyboardInput {
 public:
-    void keyReader(database_type::Database &_db);
+    bool keyReader(database_type::Database &_db);
 private:
+    bool keyReaderRunning = true;
     int gasPedalPos = 0;
-    bool running = true;
     void switchCaseInput(database_type::Database &_db, const int &_in);
     void printState(database_type::Database &_db);
     void inputText();
