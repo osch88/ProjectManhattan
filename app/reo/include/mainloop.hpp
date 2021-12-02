@@ -14,6 +14,8 @@ class MainLoop{
   HalMonitor hal_monitor_;
   Engine<v60_t> engine;
   mutable std::shared_mutex mtx_;
+  bool isRunning_ = true;
+  int deathCounter_ = 0;
 
  public:
   void hal();
