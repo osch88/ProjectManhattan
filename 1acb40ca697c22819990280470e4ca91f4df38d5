@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3311ca9d_89978527",
+        "filename": "app/reo/src/mainloop.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1019610
+      },
+      "writtenOn": "2021-12-02T10:13:37Z",
+      "side": 1,
+      "message": "plz remove",
+      "revId": "1acb40ca697c22819990280470e4ca91f4df38d5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
