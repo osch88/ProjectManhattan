@@ -10,7 +10,7 @@ Server::Server() {
     data_.indicator_status = database_type::Indicator::kOff;
     data_.seat_belt = database_type::SeatBelt::kNotApplied;
     data_.high_beam = database_type::HighBeam::kHighBeamOff;
-    data_.brake = database_type::Brake::kHandBrakeOff;
+    data_.brake = database_type::Brake::kBrakeOff;
 }
 
 int Server::Run() {
@@ -36,7 +36,7 @@ void Server::RunKeyBoard() {
     temp_data.indicator_status = database_type::Indicator::kOff;
     temp_data.seat_belt = database_type::SeatBelt::kNotApplied;
     temp_data.high_beam = database_type::HighBeam::kHighBeamOff;
-    temp_data.brake = database_type::Brake::kHandBrakeOff;
+    temp_data.brake = database_type::Brake::kBrakeOff;
     do{
         this->user_exit_ = key_board_.keyReader(temp_data);
         {

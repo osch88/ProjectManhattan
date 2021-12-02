@@ -111,12 +111,12 @@ void keyboardInput::switchCaseInput(database_type::Database &_db, const int &_in
         }
         break;
     case 120:
-        if (_db.brake == database_type::Brake::kHandBrakeOff) {
+        if (_db.brake == database_type::Brake::kBrakeOff) {
             std::cout << "Brake On" << std::endl;
-            _db.brake = database_type::Brake::kHandBrakeOn;
-        } else if (_db.brake == database_type::Brake::kHandBrakeOn) {
+            _db.brake = database_type::Brake::kBrakeOn;
+        } else if (_db.brake == database_type::Brake::kBrakeOn) {
             std::cout << "Brake Off" << std::endl;
-            _db.brake = database_type::Brake::kHandBrakeOff;
+            _db.brake = database_type::Brake::kBrakeOff;
         }
         break;
     case 46:

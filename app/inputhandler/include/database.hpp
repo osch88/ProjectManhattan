@@ -36,8 +36,8 @@ enum class HighBeam {
 };
 
 enum class Brake {
-    kHandBrakeOff = 0,
-    kHandBrakeOn
+    kBrakeOff = 0,
+    kBrakeOn
 };
 
 struct Database {
