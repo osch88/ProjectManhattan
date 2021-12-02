@@ -161,7 +161,11 @@ void Engine<VehicleCharacteristics>::getData(reo_type::Database &_input) {
     _input.speed = speed_ * 3.6;
     _input.gear_number = gear_number_;
     _input.gear = gear_;
-    _input.fuel = fuel_;
+    if (engine_status_== reo_type::EngineStatus::kOff){
+        _input.fuel = 0;    
+    } else {
+        _input.fuel = fuel_;
+    }
     _input.oil_temp = oil_temp_;
     _input.cooling_temp = cool_temp_;
 }
