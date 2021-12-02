@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81ba7988_702de3fd",
+        "filename": "app/reo/include/engine.tpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1019612
+      },
+      "writtenOn": "2021-12-02T09:52:04Z",
+      "side": 1,
+      "message": "denna ska tas bort, ersatt med gear pindle",
+      "range": {
+        "startLine": 192,
+        "startChar": 11,
+        "endLine": 192,
+        "endChar": 15
+      },
+      "revId": "774e78f9fe1098fc4c2291970bed8728d1d75ed9",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
