@@ -16,27 +16,26 @@ void MainLoop::hal() {
             this->deathCounter_ = 0;
         }
         else if (this->deathCounter_ > 100) {
-            this->isRunning_ = false;
+            this->isRunning_.exchange(false);
         }
         
         this->deathCounter_++;
         
         std::this_thread::sleep_for(std::chrono::microseconds(5));
     }
-};
+}
 
 void MainLoop::emulator() {
     while (this->isRunning_) {
         {
-            std::shared_lock<std::shared_mutex> lock(this->mtx_);
+            std::unique_lock<std::shared_mutex> lock(this->mtx_);
             engine.set_inpVal(data_);
         }
         std::this_thread::sleep_for(std::chrono::microseconds(500));
     }
-};
+}
 
 void MainLoop::canSend() {
-    bool write_status = true;
     int DELAY = 0;
     while (this->isRunning_) {
         {
@@ -45,7 +44,7 @@ void MainLoop::canSend() {
         }
         {
             std::shared_lock<std::shared_mutex> lock(this->mtx_);
-            write_status = hal_monitor_.WriteCanFrameEmulator(data_, DELAY);
+            hal_monitor_.WriteCanFrameEmulator(data_, DELAY);
         }
         std::this_thread::sleep_for(std::chrono::microseconds(500));
     }
@@ -57,4 +56,4 @@ void MainLoop::run() {
     canSend();
     t1_.join();
     t2_.join();
-};
+}

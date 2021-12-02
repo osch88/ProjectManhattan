@@ -12,6 +12,9 @@ add_executable(inputhandler
     src/server.cpp
     src/keyboard_input.cpp
     src/turn_indicator.cpp)
+
+target_compile_options(inputhandler PRIVATE -Wall -Wextra -Wpedantic -g)
+
 set_target_properties(
     inputhandler 
     PROPERTIES 

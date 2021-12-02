@@ -43,6 +43,7 @@ bool keyboardInput::keyReader(database_type::Database &_db) {
     return this->keyReaderRunning;
 }
 void keyboardInput::switchCaseInput(database_type::Database &_db, const int &_in) {
+    std::cout << "\x1B[33m";
     switch (_in) {
     case 115:
         std::cout << "Start button was pressed" << std::endl;
@@ -149,7 +150,8 @@ void keyboardInput::switchCaseInput(database_type::Database &_db, const int &_in
     }
 }
 void keyboardInput::inputText() {
-    std::cout << "Keyboard inputs: " << std::endl;
+    std::cout << "\x1B[0m";
+    std::cout << "\nKeyboard inputs: " << std::endl;
     std::cout << "\rS: start \n \rQ: stop \n\rP: gear position in park \n\rN: gear position neutral \n"
         << "\rD: gear position in drive \n\rR: gear position in reverse \n\rL: accelerate \n"
         << "\rK: decelerate \n\r1: drive mode normal \n\r2: drive mode sport \n\r7: Left blinker \n\r8: Hazard \n\r9: Right blinker \n\r0: Lights Off \n\rb: Belt On/Off \n\rx: Brake On/Off \n\rh: High Beam On/Off  \n\r. : gracefully shutdown" << std::endl;

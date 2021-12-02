@@ -9,7 +9,6 @@ set(CMAKE_CXX_STANDARD 17)
 #set(BUILD_DIR_NAME "${CMAKE_SOURCE_DIR}/build")
 set(CMAKE_CXX_FLAGS: -Wall)
 
-
 add_subdirectory(app/inputhandler)
 add_subdirectory(app/reo)
 add_subdirectory(app/avic)
