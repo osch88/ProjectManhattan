@@ -38,17 +38,17 @@ void Server::RunKeyBoard() {
     temp_data.high_beam = database_type::HighBeam::kHighBeamOff;
     temp_data.brake = database_type::Brake::kHandBrakeOff;
     do{
-         this->user_exit = key_board_.keyReader(temp_data);
+        this->user_exit_ = key_board_.keyReader(temp_data);
         {
             std::unique_lock<std::shared_mutex> lock(mutex_);
             data_ = temp_data;
         }
-        } while (this->user_exit);
+    } while (this->user_exit_);
 }
         
 void Server::RunIndicatorAndCAN() {
     database_type::Indicator indicator_status = database_type::Indicator::kOff;
-    while (this->user_exit){
+    while (this->user_exit_){
         bool write_result = true;
         {
             std::shared_lock<std::shared_mutex> lock(mutex_);

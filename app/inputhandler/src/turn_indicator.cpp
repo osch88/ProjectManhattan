@@ -25,6 +25,7 @@
         }
     }
 
-    database_type::Indicator TurnIndicator::GetIndicatorStatus() {
+    database_type::Indicator TurnIndicator::GetIndicatorStatus() const {
         return indicator_input_request_; // indicator_status_; // As cluster is generating pulse by itself we are returning input request instead of status
     }
+    

@@ -54,6 +54,4 @@ struct Database {
 };
 }  //  namespace database_type
 
-
-
 #endif  //  PROJECTMANHATTAN_APP_INPUTHANDLER_INCLUDE_DATABASE_HPP_
