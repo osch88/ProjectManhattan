@@ -4,6 +4,7 @@
 #include <chrono>
 #include <thread>
 #include <mutex>
+#include <atomic>
 #include <shared_mutex>
 #include "hal_monitor.hpp"
 #include "engine.hpp"
@@ -14,7 +15,7 @@ class MainLoop{
   HalMonitor hal_monitor_;
   Engine<v60_t> engine;
   mutable std::shared_mutex mtx_;
-  bool isRunning_ = true;
+  std::atomic<bool> isRunning_ = true;
   int deathCounter_ = 0;
 
  public:

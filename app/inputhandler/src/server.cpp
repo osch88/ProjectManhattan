@@ -38,7 +38,7 @@ void Server::RunKeyBoard() {
     temp_data.high_beam = database_type::HighBeam::kHighBeamOff;
     temp_data.brake = database_type::Brake::kBrakeOff;
     do{
-        this->user_exit_ = key_board_.keyReader(temp_data);
+        this->user_exit_.exchange(key_board_.keyReader(temp_data));
         {
             std::unique_lock<std::shared_mutex> lock(mutex_);
             data_ = temp_data;

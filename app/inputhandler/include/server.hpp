@@ -4,6 +4,7 @@
 #include <chrono>
 #include <thread>
 #include <mutex>
+#include <atomic>
 #include <shared_mutex>
 #include "keyboard_input.hpp"
 #include "socketcan.hpp"
@@ -21,7 +22,7 @@ class Server {
         mutable std::shared_mutex mutex_;
         std::thread t1_;
         bool WriteUserInputToCan(database_type::Database &db, const int &msdelay);
-        bool user_exit_ = true;
+        std::atomic<bool> user_exit_ = true;
     public:
         Server();
         int Run();

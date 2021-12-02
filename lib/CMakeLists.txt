@@ -9,4 +9,6 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 add_library(socketcan STATIC socketcan/src/socketcan.cpp)
 add_library(hal STATIC hal/src/hal_monitor.cpp)
-#add_library(writecan STATIC writecan/src/writecan.cpp)
+
+target_compile_options(socketcan PRIVATE -Wall -Wextra -Wpedantic -g)
+target_compile_options(hal PRIVATE -Wall -Wextra -Wpedantic -g)
