@@ -137,17 +137,18 @@ yourStuff::yourStuff(const std::string &_ifName, QObject *_vs) {
 
 bool yourStuff::run() {
     bool ret = true;
-    CANOpener::ReadStatus status = CANOpener::ReadStatus::OK;
+    // CANOpener::ReadStatus status = CANOpener::ReadStatus::OK;
     canfd_frame frame;
-    this->CANReader.read(&frame);
+    CANOpener::ReadStatus status = this->CANReader.read(&frame);
     /*while*/if (status == CANOpener::ReadStatus::OK) {
         this->YouHaveJustRecievedACANFrame(&frame);
+        this->Counter = 0;
     }
     if (status == CANOpener::ReadStatus::ERROR) ret = false;
     else if (status == CANOpener::ReadStatus::NAVAL ||
              status == CANOpener::ReadStatus::ENDOF) this->Counter++;
-    else   this->Counter = 0;
-    if (this->Counter > 200) ret = false;
+    // else   this->Counter = 0;
+    if (this->Counter > 1000) ret = false;
     return ret;
 }
 
