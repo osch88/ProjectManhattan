@@ -92,7 +92,7 @@ void HalMonitor::GetCanData(reo_type::Database &data) {
     data = latest_received_data_;
 }
 
-bool HalMonitor::WriteCanFrameEmulator(reo_type::Database &db, const int &msdelay){
+bool HalMonitor::WriteCanFrameEmulator(const reo_type::Database &db, const int &msdelay){
     bool ret = true;
     CanFrame emulator;
     unsigned int db_rpm = db.rpm;

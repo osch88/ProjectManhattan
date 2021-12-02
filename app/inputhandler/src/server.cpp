@@ -38,12 +38,12 @@ void Server::RunKeyBoard() {
     temp_data.high_beam = database_type::HighBeam::kHighBeamOff;
     temp_data.brake = database_type::Brake::kHandBrakeOff;
     do{
-         this->user_exit = key_board_.keyReader(temp_data);
+        this->user_exit = key_board_.keyReader(temp_data);
         {
             std::unique_lock<std::shared_mutex> lock(mutex_);
             data_ = temp_data;
         }
-        } while (this->user_exit);
+    } while (this->user_exit);
 }
         
 void Server::RunIndicatorAndCAN() {

@@ -8,12 +8,12 @@ class TurnIndicator {
     private:
         database_type::Indicator indicator_input_request_;
         database_type::Indicator indicator_status_; // blinking pattern on/off
-        uint_fast16_t timer_;
+        uint16_t timer_;
 
     public:
         TurnIndicator();
         void UpdateIndicator(const database_type::Database &data);
-        database_type::Indicator GetIndicatorStatus();
+        database_type::Indicator GetIndicatorStatus() const;
 };
 
 #endif

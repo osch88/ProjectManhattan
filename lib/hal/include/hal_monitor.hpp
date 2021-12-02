@@ -20,6 +20,6 @@ class HalMonitor{
         HalMonitor();
         bool ReadFromCan();  //returns true if new frame is read from CAN.
         void GetCanData(reo_type::Database &data);
-        bool WriteCanFrameEmulator(reo_type::Database &db, const int &msdelay);
+        bool WriteCanFrameEmulator(const reo_type::Database &db, const int &msdelay);
 };
 #endif

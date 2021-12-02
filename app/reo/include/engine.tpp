@@ -210,7 +210,6 @@ void Engine<VehicleCharacteristics>::UpdateFuelAndTemp() {
         if (cool_temp_ < 125) {
             cool_temp_ +=0.001;
         }
-        
     } else {
         if (oil_temp_ > 0) {
             oil_temp_ -=0.001;    
